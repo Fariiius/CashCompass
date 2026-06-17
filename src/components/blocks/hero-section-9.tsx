@@ -3,7 +3,7 @@
 import * as React from "react"
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
 import { Menu, X, Compass, DollarSign, Wallet, TrendingUp } from 'lucide-react'
 
 const menuItems = [
@@ -56,21 +56,12 @@ export const HeroSection = () => {
                                 </div>
 
                                 <div className="flex w-full flex-col space-y-3 sm:flex-row sm:gap-3 sm:space-y-0 md:w-fit lg:border-l lg:pl-6">
-                                    <Button
-                                        asChild
-                                        variant="outline"
-                                        size="sm">
-                                        <Link href="#">
-                                            <span>Login</span>
-                                        </Link>
-                                    </Button>
-                                    <Button
-                                        asChild
-                                        size="sm">
-                                        <Link href="#">
-                                            <span>Sign Up</span>
-                                        </Link>
-                                    </Button>
+                                    <Link href="#" className={buttonVariants({ variant: "outline", size: "sm" })}>
+                                        <span>Login</span>
+                                    </Link>
+                                    <Link href="#" className={buttonVariants({ size: "sm" })}>
+                                        <span>Sign Up</span>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -93,14 +84,9 @@ export const HeroSection = () => {
                             <h1 className="text-balance text-4xl font-semibold md:text-5xl lg:text-6xl text-emerald-600 dark:text-emerald-400">Cash Compass</h1>
                             <p className="mx-auto my-8 max-w-2xl text-xl text-muted-foreground">Your trusted Egyptian financial advisor. Navigate your finances with confidence, track expenses, and discover the best investment opportunities tailored for you.</p>
 
-                            <Button
-                                asChild
-                                size="lg"
-                                className="bg-emerald-600 hover:bg-emerald-700 text-white">
-                                <Link href="#">
-                                    <span className="btn-label">Start Your Journey</span>
-                                </Link>
-                            </Button>
+                            <Link href="#" className={buttonVariants({ size: "lg", className: "bg-emerald-600 hover:bg-emerald-700 text-white" })}>
+                                <span className="btn-label">Start Your Journey</span>
+                            </Link>
                         </div>
                     </div>
 

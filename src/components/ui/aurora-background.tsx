@@ -149,12 +149,12 @@ const CameraController = () => {
 // Main Background Component
 export const AuroraFlowBackground = () => {
   return (
-    <div className="absolute inset-0 -z-10 w-full h-full opacity-60">
+    <div className="absolute inset-0 z-0 w-full h-full bg-[#000a12]">
       <Canvas
         camera={{ position: [0, 0, 30], fov: 75 }}
         gl={{ 
           antialias: true, 
-          alpha: true,
+          alpha: false,
           powerPreference: "high-performance"
         }}
       >
@@ -178,8 +178,6 @@ export const AuroraFlowBackground = () => {
           decay={2}
         />
       </Canvas>
-      {/* Overlay gradient to blend with the rest of the page */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/90" />
     </div>
   );
 };

@@ -10,7 +10,7 @@ const AuroraBackground = () => {
   const { scene } = useThree();
   
   useEffect(() => {
-    const geometry = new THREE.PlaneGeometry(200, 200);
+    const geometry = new THREE.PlaneGeometry(500, 500);
     const material = new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
@@ -101,8 +101,8 @@ const AuroraBackground = () => {
           float greenFlow = smoothstep(0.7, 0.95, flow3 + streaks * 0.2);
           color = mix(color, green, greenFlow * 0.5);
           
-          // Add subtle noise texture
-          float noise = snoise(uv * 100.0) * 0.02;
+          // Add very subtle noise texture for film grain
+          float noise = snoise(uv * 200.0) * 0.008;
           color += noise;
           
           gl_FragColor = vec4(color, 1.0);
@@ -137,8 +137,8 @@ const CameraController = () => {
   
   useFrame((state) => {
     const time = state.clock.elapsedTime;
-    camera.position.x = Math.sin(time * 0.05) * 3;
-    camera.position.y = Math.cos(time * 0.07) * 2;
+    camera.position.x = Math.sin(time * 0.05) * 1.5;
+    camera.position.y = Math.cos(time * 0.07) * 1;
     camera.position.z = 30;
     camera.lookAt(0, 0, -30);
   });
@@ -152,6 +152,7 @@ export const AuroraFlowBackground = () => {
     <div className="absolute inset-0 z-0 w-full h-full bg-[#000a12]">
       <Canvas
         camera={{ position: [0, 0, 30], fov: 75 }}
+        dpr={[1.5, 2]}
         gl={{ 
           antialias: true, 
           alpha: false,

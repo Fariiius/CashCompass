@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 import { Menu, X, Compass, DollarSign, Wallet, TrendingUp } from 'lucide-react'
+import { AuroraFlowBackground } from '@/components/ui/aurora-background'
 
 const menuItems = [
     { name: 'Features', href: '#' },
@@ -78,7 +79,8 @@ export const HeroSection = () => {
                     <div className="h-[80rem] -translate-y-87.5 absolute left-0 top-0 w-56 -rotate-45 bg-[radial-gradient(50%_50%_at_50%_50%,hsla(150,80%,40%,.04)_0,hsla(150,80%,40%,.02)_80%,transparent_100%)]" />
                 </div>
 
-                <section className="overflow-hidden bg-white dark:bg-transparent">
+                <section className="relative overflow-hidden bg-transparent">
+                    <AuroraFlowBackground />
                     <div className="relative mx-auto max-w-5xl px-6 py-28 lg:py-24">
                         <div className="relative z-10 mx-auto max-w-2xl text-center">
                             <h1 className="text-balance text-4xl font-semibold md:text-5xl lg:text-6xl text-emerald-600 dark:text-emerald-400">Cash Compass</h1>

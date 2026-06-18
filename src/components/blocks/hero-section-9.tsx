@@ -1,11 +1,22 @@
 "use client";
 
 import React from 'react';
+import { Home, User, Users } from 'lucide-react';
 import { AuroraFlowBackground } from '@/components/ui/aurora-background';
+import { NavBar } from '@/components/ui/tubelight-navbar';
+
+const navItems = [
+  { name: 'Home', url: '#', icon: Home },
+  { name: 'About', url: '#about', icon: User },
+  { name: 'Founders', url: '#founders', icon: Users },
+];
 
 export const HeroSection = () => {
   return (
     <div className="relative w-full h-screen overflow-hidden bg-[#000a12] text-white">
+      {/* Tubelight Navbar */}
+      <NavBar items={navItems} />
+
       {/* Canvas Background */}
       <div className="absolute inset-0 z-0">
         <AuroraFlowBackground />

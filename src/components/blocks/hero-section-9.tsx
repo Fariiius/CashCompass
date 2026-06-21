@@ -149,7 +149,8 @@ export const HeroSection = () => {
                 role: t.founders.roles.founder, 
                 desc: t.founders.marwan_desc,
                 linkedin: "https://www.linkedin.com/in/marwan-el-bialy/",
-                email: "mailto:marwan.bialy02@gmail.com"
+                email: "mailto:marwan.bialy02@gmail.com",
+                image: "/marwan.jpeg"
               },
             ].map((founder) => (
               <div

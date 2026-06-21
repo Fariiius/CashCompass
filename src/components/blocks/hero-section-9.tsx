@@ -133,14 +133,16 @@ export const HeroSection = () => {
                 role: "Founder", 
                 desc: "Finance and Investment graduate and published IEEE researcher with hands-on internship experience in corporate finance and HR at Ezz Steel, Egypt's largest steel manufacturer. Holder of six CFI certifications spanning financial modeling, capital markets, credit analysis, FinTech, and business intelligence. Built an AI-powered bilingual banking chatbot as a graduation project, demonstrating strong integration of finance and technology. Seeking an entry-level role in financial analysis, investment, or corporate finance.",
                 linkedin: "https://www.linkedin.com/in/fares-el-sayed-aly-b44048274/",
-                email: "mailto:fares.elsayed.mahmoud927@gmail.com"
+                email: "mailto:fares.elsayed.mahmoud927@gmail.com",
+                image: "/fares.png"
               },
               { 
                 name: "Yara Ibrahim", 
                 role: "Founder", 
                 desc: "Assistant Professor of Finance and Investment with over 15 years of academic experience. Passionate about fintech, digital transformation, and sustainable finance, with research covering algorithmic trading, DeFi, and AI-driven innovation. Certified in AI applications and FinTech by ACCA. Serves as a Sustainable Development Ambassador with Egypt’s Ministry of Environment, promoting the integration of sustainability into financial systems and policy.",
                 linkedin: "https://www.linkedin.com/in/yara-ibrahim-250bb933/",
-                email: "mailto:dr.yara.magdy.90@gmail.com"
+                email: "mailto:dr.yara.magdy.90@gmail.com",
+                image: "/yara.png"
               },
               { 
                 name: "Marwan El-Bialy", 
@@ -154,8 +156,12 @@ export const HeroSection = () => {
                 key={founder.name}
                 className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 hover:border-neutral-400/30 transition-all duration-300 w-full max-w-sm flex flex-col items-center"
               >
-                <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-neutral-300 to-neutral-600 flex items-center justify-center text-3xl font-bold text-white shadow-lg shadow-neutral-500/20 group-hover:scale-110 transition-transform duration-300">
-                  {founder.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
+                <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-neutral-300 to-neutral-600 flex items-center justify-center text-3xl font-bold text-white shadow-lg shadow-neutral-500/20 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
+                  {founder.image ? (
+                    <img src={founder.image} alt={founder.name} className="w-full h-full object-cover" />
+                  ) : (
+                    founder.name.split(' ').map(n => n[0]).slice(0, 2).join('')
+                  )}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">{founder.name}</h3>
                 <p className="text-zinc-300 text-sm font-semibold tracking-wide uppercase mb-4">{founder.role}</p>

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { Home, User, Users } from 'lucide-react';
+import { Home, User, Users, Linkedin, Mail } from 'lucide-react';
 import { SparklesCore } from '@/components/ui/sparkles';
 import { NavBar } from '@/components/ui/tubelight-navbar';
 import { AnimatedLayerButton } from '@/components/ui/animated-layer-button';
@@ -120,20 +120,55 @@ export const HeroSection = () => {
 
           <div className="flex flex-wrap justify-center gap-8">
             {[
-              { name: "Fares Elsayed", role: "CEO & Co-Founder", desc: "Visionary leader with a passion for financial technology and innovation." },
-              { name: "Ahmed Hassan", role: "CTO & Co-Founder", desc: "Technical architect building the future of fintech in the Middle East." },
-              { name: "Sara Mohamed", role: "COO & Co-Founder", desc: "Operations expert driving growth and scaling Cash Compass across Egypt." },
+              { 
+                name: "Fares El-Sayed Aly", 
+                role: "Founder", 
+                desc: "Passionate about reshaping finance in Egypt through innovative technology and strategic leadership.",
+                linkedin: "https://www.linkedin.com/in/fares-el-sayed-aly-b44048274/",
+                email: "mailto:fares.elsayed@example.com"
+              },
+              { 
+                name: "Yara Ibrahim", 
+                role: "Founder", 
+                desc: "Driving operational excellence and strategic growth to build the future of fintech in the Middle East.",
+                linkedin: "https://www.linkedin.com/in/yara-ibrahim-250bb933/",
+                email: "mailto:yara.ibrahim@example.com"
+              },
+              { 
+                name: "Marwan El-Bialy", 
+                role: "Founder", 
+                desc: "Technical architect and visionary focused on scaling robust financial solutions and platforms.",
+                linkedin: "https://www.linkedin.com/in/marwan-el-bialy/",
+                email: "mailto:marwan.elbialy@example.com"
+              },
             ].map((founder) => (
               <div
                 key={founder.name}
                 className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 hover:border-neutral-400/30 transition-all duration-300 w-full max-w-sm flex flex-col items-center"
               >
                 <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-neutral-300 to-neutral-600 flex items-center justify-center text-3xl font-bold text-white shadow-lg shadow-neutral-500/20 group-hover:scale-110 transition-transform duration-300">
-                  {founder.name.split(' ').map(n => n[0]).join('')}
+                  {founder.name.split(' ').map(n => n[0]).slice(0, 2).join('')}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">{founder.name}</h3>
                 <p className="text-zinc-300 text-sm font-semibold tracking-wide uppercase mb-4">{founder.role}</p>
-                <p className="text-zinc-400 text-base leading-relaxed">{founder.desc}</p>
+                <p className="text-zinc-400 text-base leading-relaxed flex-grow mb-6">{founder.desc}</p>
+                
+                <div className="flex items-center gap-4 mt-auto">
+                  <a 
+                    href={founder.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-full bg-white/5 hover:bg-white/20 transition-colors text-white/70 hover:text-white"
+                  >
+                    <Linkedin size={20} />
+                  </a>
+                  <a 
+                    href={founder.email} 
+                    className="p-2 rounded-full bg-white/5 hover:bg-white/20 transition-colors text-white/70 hover:text-white"
+                  >
+                    <Mail size={20} />
+                  </a>
+                </div>
               </div>
             ))}
           </div>

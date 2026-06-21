@@ -49,7 +49,7 @@ export const ShinyButton: React.FC<ShinyButtonProps> = ({
       )}
     >
       <span
-        className="relative block size-full uppercase tracking-wide text-black dark:text-white"
+        className="relative block size-full uppercase tracking-wide"
         style={{
           maskImage:
             "linear-gradient(-75deg,black calc(var(--x) + 20%),transparent calc(var(--x) + 30%),black calc(var(--x) + 100%))",

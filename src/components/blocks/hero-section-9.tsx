@@ -13,8 +13,10 @@ const LinkedinIcon = ({ size = 20 }: { size?: number }) => (
 import { SparklesCore } from '@/components/ui/sparkles';
 import { NavBar } from '@/components/ui/tubelight-navbar';
 import { AnimatedLayerButton } from '@/components/ui/animated-layer-button';
-import { useLanguage } from '@/context/LanguageContext';
 import { LanguageSelector } from '@/components/ui/language-selector';
+import { useLanguage } from '@/context/LanguageContext';
+import { LiquidButton } from '@/components/ui/liquid-glass-button';
+import Link from 'next/link';
 
 export const HeroSection = () => {
   const { t, language } = useLanguage();
@@ -65,15 +67,12 @@ export const HeroSection = () => {
           <p className="text-neutral-600 dark:text-neutral-300 cursor-default text-center text-xl sm:text-2xl mt-4">
             {t.hero.subtitle}
           </p>
-          <div className="mt-8 relative z-[9999] pointer-events-auto">
-            <button
-              onClick={() => {
-                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="px-8 py-3 rounded-full bg-black text-white dark:bg-white dark:text-black font-semibold text-lg hover:scale-105 transition-all duration-300"
-            >
-              {t.hero.cta}
-            </button>
+          <div className="mt-8 relative z-[9999] pointer-events-auto h-[100px] w-[300px] flex justify-center items-center">
+            <Link href="/bot" className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center">
+              <LiquidButton className="px-8 py-6 text-xl font-bold rounded-full w-auto">
+                {t.hero.cta}
+              </LiquidButton>
+            </Link>
           </div>
         </div>
       </section>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Home, User, Users } from 'lucide-react';
-import { AuroraFlowBackground } from '@/components/ui/aurora-background';
+import { SparklesCore } from '@/components/ui/sparkles';
 import { NavBar } from '@/components/ui/tubelight-navbar';
 
 const navItems = [
@@ -21,7 +21,16 @@ export const HeroSection = () => {
       <section id="home" className="relative w-full h-screen overflow-hidden">
         {/* Canvas Background */}
         <div className="absolute inset-0 z-0">
-          <AuroraFlowBackground />
+          <SparklesCore
+            id="tsparticlesfullpage"
+            background="transparent"
+            minSize={0.6}
+            maxSize={1.4}
+            particleDensity={100}
+            className="w-full h-full"
+            particleColor="#FFFFFF"
+            speed={1}
+          />
         </div>
         
         {/* Hero Content */}

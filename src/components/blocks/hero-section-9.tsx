@@ -55,11 +55,11 @@ export const HeroSection = () => {
       <section id="about" className="relative py-24 px-6 overflow-hidden">
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-50 to-neutral-400">
               About Cash Compass
             </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 mx-auto rounded-full mb-12" />
+          <div className="w-20 h-1 bg-gradient-to-r from-neutral-300 to-neutral-600 mx-auto rounded-full mb-12" />
           
           <div className="flex flex-col gap-8 text-center items-center">
             <div className="space-y-6">
@@ -75,7 +75,7 @@ export const HeroSection = () => {
             </div>
             
             <div className="mt-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300 flex flex-col items-center gap-6 max-w-md w-full">
-              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">Read Our Publication</h3>
+              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neutral-50 to-neutral-400">Read Our Publication</h3>
               <p className="text-zinc-300 text-base leading-relaxed">Discover the academic research, architecture, and ethical design principles behind Cash Compass on IEEE Xplore.</p>
               <SlideButton 
                 text="Slide to Read" 
@@ -90,11 +90,11 @@ export const HeroSection = () => {
       <section id="founders" className="relative py-24 px-6 overflow-hidden">
         <div className="relative z-10 max-w-5xl mx-auto">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-50 to-neutral-400">
               Our Founders
             </span>
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 mx-auto rounded-full mb-6" />
+          <div className="w-20 h-1 bg-gradient-to-r from-neutral-300 to-neutral-600 mx-auto rounded-full mb-6" />
           <p className="text-center text-zinc-400 text-lg mb-16 max-w-2xl mx-auto">
             Meet the minds behind Cash Compass — passionate about reshaping finance in Egypt.
           </p>
@@ -107,9 +107,9 @@ export const HeroSection = () => {
             ].map((founder) => (
               <div
                 key={founder.name}
-                className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 hover:border-teal-400/30 transition-all duration-300 w-full max-w-sm flex flex-col items-center"
+                className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 hover:border-neutral-400/30 transition-all duration-300 w-full max-w-sm flex flex-col items-center"
               >
-                <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-3xl font-bold text-white shadow-lg shadow-teal-500/20 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-neutral-300 to-neutral-600 flex items-center justify-center text-3xl font-bold text-white shadow-lg shadow-neutral-500/20 group-hover:scale-110 transition-transform duration-300">
                   {founder.name.split(' ').map(n => n[0]).join('')}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">{founder.name}</h3>

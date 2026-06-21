@@ -43,10 +43,15 @@ export const HeroSection = () => {
           <p className="text-neutral-300 cursor-default text-center text-xl sm:text-2xl mt-4">
             is brighter than you think
           </p>
-          <div className="mt-8">
-            <a href="#about" className="px-8 py-3 rounded-full bg-white text-black font-semibold text-lg hover:scale-105 transition-all duration-300">
+          <div className="mt-8 relative z-[9999] pointer-events-auto">
+            <button 
+              onClick={() => {
+                document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="px-8 py-3 rounded-full bg-white text-black font-semibold text-lg hover:scale-105 transition-all duration-300"
+            >
               Try Cash Compass
-            </a>
+            </button>
           </div>
         </div>
       </section>

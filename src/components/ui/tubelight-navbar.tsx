@@ -93,10 +93,7 @@ export function NavBar({ items, className }: NavBarProps) {
                 isActive && "bg-white/15 text-white",
               )}
             >
-              <span className="hidden md:inline">{item.name}</span>
-              <span className="md:hidden">
-                <Icon size={18} strokeWidth={2.5} />
-              </span>
+              <span className="inline text-xs sm:text-sm whitespace-nowrap">{item.name}</span>
               {isActive && (
                 <motion.div
                   layoutId="lamp"

@@ -13,45 +13,38 @@ const navItems = [
 
 export const HeroSection = () => {
   return (
-    <div className="bg-[#000a12] text-white">
+    <div className="bg-black text-white">
       {/* Tubelight Navbar */}
       <NavBar items={navItems} />
 
       {/* Hero */}
       <section id="home" className="relative w-full h-screen overflow-hidden">
         {/* Canvas Background */}
-        <div className="absolute inset-0 z-0">
+        <div className="w-full absolute inset-0 h-screen">
           <SparklesCore
-            id="tsparticlesfullpage"
+            id="tsparticlescolorful"
             background="transparent"
             minSize={0.6}
             maxSize={1.4}
             particleDensity={100}
             className="w-full h-full"
-            particleColor="#FFFFFF"
-            speed={1}
+            particleColor="#00ff00"
+            speed={0.5}
           />
         </div>
         
         {/* Hero Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center w-full h-full px-6 text-center">
-          <div className="max-w-4xl">
-            <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-8xl mb-6">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-cyan-400 to-emerald-400 drop-shadow-sm">
-                Cash Compass
-              </span>
-            </h1>
-            <p className="text-2xl sm:text-3xl md:text-4xl font-bold text-white/90 mb-4">
-              Your Future in Investment
-            </p>
-            <p className="mx-auto mt-4 max-w-2xl text-lg sm:text-xl text-zinc-400 mb-10 leading-relaxed">
-              Navigate your finances with confidence, track expenses, and discover the best investment opportunities tailored for you.
-            </p>
-            <div className="flex items-center justify-center">
-              <a href="#about" className="px-10 py-4 rounded-full bg-gradient-to-r from-teal-500 to-cyan-500 text-white font-semibold text-lg shadow-lg shadow-cyan-500/30 hover:shadow-cyan-500/50 hover:scale-105 transition-all duration-300">
-                Try Cash Compass
-              </a>
-            </div>
+        <div className="flex flex-col items-center justify-center gap-4 relative z-20 h-full">
+          <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+            Cash Compass
+          </h1>
+          <p className="text-neutral-300 cursor-default text-center text-xl sm:text-2xl mt-4">
+            is brighter than you think
+          </p>
+          <div className="mt-8">
+            <a href="#about" className="px-8 py-3 rounded-full bg-white text-black font-semibold text-lg hover:scale-105 transition-all duration-300">
+              Try Cash Compass
+            </a>
           </div>
         </div>
       </section>

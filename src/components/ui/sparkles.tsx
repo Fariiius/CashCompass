@@ -52,7 +52,7 @@ export const SparklesCore = (props: ParticlesProps) => {
 
   const generatedId = useId();
   return (
-    <motion.div animate={controls} className={cn("opacity-0", className)}>
+    <motion.div animate={controls} className={className}>
       {init && (
         <Particles
           id={id || generatedId}

@@ -13,16 +13,21 @@ const LinkedinIcon = ({ size = 20 }: { size?: number }) => (
 import { SparklesCore } from '@/components/ui/sparkles';
 import { NavBar } from '@/components/ui/tubelight-navbar';
 import { AnimatedLayerButton } from '@/components/ui/animated-layer-button';
-
-const navItems = [
-  { name: 'Home', url: '#home', icon: Home },
-  { name: 'About', url: '#about', icon: User },
-  { name: 'Founders', url: '#founders', icon: Users },
-];
+import { useLanguage } from '@/context/LanguageContext';
+import { LanguageSelector } from '@/components/ui/language-selector';
 
 export const HeroSection = () => {
+  const { t, language } = useLanguage();
+
+  const navItems = [
+    { name: t.navbar.home, url: '#home', icon: Home },
+    { name: t.navbar.about, url: '#about', icon: User },
+    { name: t.navbar.founders, url: '#founders', icon: Users },
+  ];
+
   return (
     <div className="bg-white dark:bg-black text-black dark:text-white relative font-sans antialiased transition-colors duration-300">
+      <LanguageSelector />
       {/* Global Canvas Background */}
       <div className="fixed inset-0 z-0 w-full h-full pointer-events-none overflow-hidden">
         {/* Background Logo */}
@@ -55,10 +60,10 @@ export const HeroSection = () => {
         {/* Hero Content */}
         <div className="flex flex-col items-center justify-center gap-4 relative z-20 h-full">
           <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 to-neutral-400 dark:from-neutral-50 dark:to-neutral-400">
-            Cash Compass
+            {t.hero.title}
           </h1>
           <p className="text-neutral-600 dark:text-neutral-300 cursor-default text-center text-xl sm:text-2xl mt-4">
-            is brighter than you think
+            {t.hero.subtitle}
           </p>
           <div className="mt-8 relative z-[9999] pointer-events-auto">
             <button
@@ -67,7 +72,7 @@ export const HeroSection = () => {
               }}
               className="px-8 py-3 rounded-full bg-black text-white dark:bg-white dark:text-black font-semibold text-lg hover:scale-105 transition-all duration-300"
             >
-              Try Cash Compass
+              {t.hero.cta}
             </button>
           </div>
         </div>
@@ -78,21 +83,17 @@ export const HeroSection = () => {
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-6">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-800 to-neutral-400 dark:from-neutral-50 dark:to-neutral-400">
-              About Cash Compass
+              {t.about.title}
             </span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-neutral-300 to-neutral-600 mx-auto rounded-full mb-12" />
 
           <div className="flex flex-col gap-8 text-center items-center">
             <div className="space-y-6">
+              <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-100 leading-relaxed" dangerouslySetInnerHTML={{ __html: t.about.p1.replace('Cash Compass', '<strong class="text-black dark:text-white">Cash Compass</strong>').replace('financial advisor', '<strong class="text-black dark:text-white">financial advisor</strong>') }} />
+              <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-100 leading-relaxed" dangerouslySetInnerHTML={{ __html: t.about.p2.replace('all major Egyptian banks', '<strong class="text-black dark:text-white">all major Egyptian banks</strong>').replace('EGX 30 and EGX 70', '<strong class="text-black dark:text-white">EGX 30 and EGX 70</strong>') }} />
               <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-100 leading-relaxed">
-                <strong className="text-black dark:text-white">Cash Compass</strong> is a Gen-AI powered banking chatbot designed to advance ethical financial inclusion in Egyptian retail banking. Serving as your personal <strong className="text-black dark:text-white">financial advisor</strong>, the system provides real-time, context-aware bilingual (Arabic & English) guidance.
-              </p>
-              <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-100 leading-relaxed">
-                We aggregate data from <strong className="text-black dark:text-white">all major Egyptian banks</strong>, allowing you to effortlessly compare accounts, loans, cards, and investment products in one place. Beyond banking, Cash Compass monitors the Egyptian stock market, including <strong className="text-black dark:text-white">EGX 30 and EGX 70</strong>, and predicts closing prices to empower your investment decisions.
-              </p>
-              <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-100 leading-relaxed">
-                Built on ethical design principles and advanced retrieval-augmented generation (RAG) architecture, Cash Compass guarantees privacy, fairness, transparency, and accessibility—ensuring trustworthy and scalable digital financial advisory for everyone.
+                {t.about.p3}
               </p>
             </div>
 
@@ -106,7 +107,7 @@ export const HeroSection = () => {
                   window.open("https://ieeexplore.ieee.org/document/11442061", "_blank", "noopener,noreferrer");
                 }}
               >
-                Read Our Publication
+                {t.about.btn}
               </AnimatedLayerButton>
             </div>
           </div>
@@ -118,36 +119,36 @@ export const HeroSection = () => {
         <div className="relative z-10 max-w-5xl mx-auto">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-6">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-800 to-neutral-400 dark:from-neutral-50 dark:to-neutral-400">
-              Our Founders
+              {t.founders.title}
             </span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-neutral-300 to-neutral-600 mx-auto rounded-full mb-6" />
           <p className="text-center text-zinc-600 dark:text-zinc-400 text-lg mb-16 max-w-2xl mx-auto">
-            Meet the minds behind Cash Compass — passionate about reshaping finance in Egypt.
+            {t.founders.subtitle}
           </p>
 
           <div className="flex flex-wrap justify-center gap-8">
             {[
               { 
-                name: "Fares El-Sayed Aly", 
-                role: "Founder", 
-                desc: "Finance and Investment graduate and published IEEE researcher with hands-on internship experience in corporate finance and HR at Ezz Steel, Egypt's largest steel manufacturer. Holder of six CFI certifications spanning financial modeling, capital markets, credit analysis, FinTech, and business intelligence. Built an AI-powered bilingual banking chatbot as a graduation project, demonstrating strong integration of finance and technology. Seeking an entry-level role in financial analysis, investment, or corporate finance.",
+                name: language.startsWith('ar') ? "فارس السيد علي" : "Fares El-Sayed Aly", 
+                role: t.founders.roles.founder, 
+                desc: t.founders.fares_desc,
                 linkedin: "https://www.linkedin.com/in/fares-el-sayed-aly-b44048274/",
                 email: "mailto:fares.elsayed.mahmoud927@gmail.com",
                 image: "/fares.jpeg"
               },
               { 
-                name: "Yara Ibrahim", 
-                role: "Founder", 
-                desc: "Assistant Professor of Finance and Investment with over 15 years of academic experience. Passionate about fintech, digital transformation, and sustainable finance, with research covering algorithmic trading, DeFi, and AI-driven innovation. Certified in AI applications and FinTech by ACCA. Serves as a Sustainable Development Ambassador with Egypt’s Ministry of Environment, promoting the integration of sustainability into financial systems and policy.",
+                name: language.startsWith('ar') ? "يارا إبراهيم" : "Yara Ibrahim", 
+                role: t.founders.roles.founder, 
+                desc: t.founders.yara_desc,
                 linkedin: "https://www.linkedin.com/in/yara-ibrahim-250bb933/",
                 email: "mailto:dr.yara.magdy.90@gmail.com",
                 image: "/yara.jpg"
               },
               { 
-                name: "Marwan El-Bialy", 
-                role: "Founder", 
-                desc: "Technical architect and visionary focused on scaling robust financial solutions and platforms.",
+                name: language.startsWith('ar') ? "مروان البيالي" : "Marwan El-Bialy", 
+                role: t.founders.roles.founder, 
+                desc: t.founders.marwan_desc,
                 linkedin: "https://www.linkedin.com/in/marwan-el-bialy/",
                 email: "mailto:marwan.bialy02@gmail.com"
               },
@@ -165,7 +166,7 @@ export const HeroSection = () => {
                 </div>
                 <h3 className="text-2xl font-bold text-black dark:text-white mb-2">{founder.name}</h3>
                 <p className="text-zinc-600 dark:text-zinc-300 text-sm font-semibold tracking-wide uppercase mb-4">{founder.role}</p>
-                <p className="text-zinc-700 dark:text-zinc-400 text-sm leading-relaxed flex-grow mb-6 text-left">{founder.desc}</p>
+                <p className="text-zinc-700 dark:text-zinc-400 text-sm leading-relaxed flex-grow mb-6 text-center">{founder.desc}</p>
                 
                 <div className="flex items-center gap-4 mt-auto">
                   <a 

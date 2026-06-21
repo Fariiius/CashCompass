@@ -67,12 +67,12 @@ export function NavBar({ items, className }: NavBarProps) {
   return (
     <div
       className={cn(
-        "fixed top-0 left-1/2 -translate-x-1/2 z-50 pt-6",
+        "fixed top-0 left-1/2 -translate-x-1/2 z-50 pt-6 max-w-[100vw] px-4",
         className,
       )}
     >
-      <div className="flex items-center gap-0.5 sm:gap-3 bg-white/50 border border-black/10 dark:bg-white/10 dark:border-white/20 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
-        <div className="pl-1 sm:pl-2 flex items-center justify-center shrink-0">
+      <div className="flex items-center justify-between gap-1 sm:gap-3 bg-white/50 border border-black/10 dark:bg-white/10 dark:border-white/20 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+        <div className="pl-2 flex items-center justify-center shrink-0">
           <img 
             src="/logo.png" 
             alt="Cash Compass" 
@@ -117,7 +117,7 @@ export function NavBar({ items, className }: NavBarProps) {
           )
         })}
         
-        <div className="flex items-center pr-1 sm:pr-2 shrink-0">
+        <div className="flex items-center pr-1 shrink-0">
           <ThemeToggle />
         </div>
       </div>

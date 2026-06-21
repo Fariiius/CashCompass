@@ -13,25 +13,26 @@ const navItems = [
 
 export const HeroSection = () => {
   return (
-    <div className="bg-black text-white">
+    <div className="bg-black text-white relative">
+      {/* Global Canvas Background */}
+      <div className="fixed inset-0 z-0 w-full h-full pointer-events-none">
+        <SparklesCore
+          id="tsparticlescolorful"
+          background="transparent"
+          minSize={0.6}
+          maxSize={1.4}
+          particleDensity={100}
+          className="w-full h-full"
+          particleColor="#00ff00"
+          speed={0.5}
+        />
+      </div>
       {/* Tubelight Navbar */}
       <NavBar items={navItems} />
 
       {/* Hero */}
       <section id="home" className="relative w-full h-screen overflow-hidden">
-        {/* Canvas Background */}
-        <div className="w-full absolute inset-0 h-screen">
-          <SparklesCore
-            id="tsparticlescolorful"
-            background="transparent"
-            minSize={0.6}
-            maxSize={1.4}
-            particleDensity={100}
-            className="w-full h-full"
-            particleColor="#00ff00"
-            speed={0.5}
-          />
-        </div>
+
         
         {/* Hero Content */}
         <div className="flex flex-col items-center justify-center gap-4 relative z-20 h-full">
@@ -51,7 +52,6 @@ export const HeroSection = () => {
 
       {/* About Section */}
       <section id="about" className="relative py-24 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#000a12] via-[#001a2c] to-[#000a12]" />
         <div className="relative z-10 max-w-5xl mx-auto">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-6">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-400">
@@ -96,7 +96,6 @@ export const HeroSection = () => {
 
       {/* Founders Section */}
       <section id="founders" className="relative py-24 px-6 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#000a12] via-[#00111e] to-[#000a12]" />
         <div className="relative z-10 max-w-5xl mx-auto">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-6">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-400">

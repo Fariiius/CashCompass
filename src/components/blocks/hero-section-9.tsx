@@ -78,10 +78,13 @@ export const HeroSection = () => {
               <AnimatedLayerButton 
                 onClick={(e) => {
                   e.preventDefault();
-                  window.open("https://ieeexplore.ieee.org/document/11442061", "_blank");
+                  const target = e.currentTarget;
+                  // Remove focus to prevent Safari sticky-hover bug when returning to tab
+                  setTimeout(() => target.blur(), 100);
+                  window.open("https://ieeexplore.ieee.org/document/11442061", "_blank", "noopener,noreferrer");
                 }}
               >
-                View Publication
+                Read Our Publication
               </AnimatedLayerButton>
             </div>
           </div>

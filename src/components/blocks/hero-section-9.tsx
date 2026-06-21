@@ -15,7 +15,7 @@ import { NavBar } from '@/components/ui/tubelight-navbar';
 import { AnimatedLayerButton } from '@/components/ui/animated-layer-button';
 import { LanguageSelector } from '@/components/ui/language-selector';
 import { useLanguage } from '@/context/LanguageContext';
-import { LiquidButton } from '@/components/ui/liquid-glass-button';
+import { MagneticButton } from '@/components/ui/magnetic-button';
 import Link from 'next/link';
 
 export const HeroSection = () => {
@@ -69,9 +69,11 @@ export const HeroSection = () => {
           </p>
           <div className="mt-8 relative z-[9999] pointer-events-auto h-[100px] w-[300px] flex justify-center items-center">
             <Link href="/bot" className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center">
-              <LiquidButton className="px-8 py-6 text-xl font-bold rounded-full w-auto">
-                {t.hero.cta}
-              </LiquidButton>
+              <MagneticButton>
+                <button className="px-8 py-4 rounded-full bg-black text-white dark:bg-white dark:text-black font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
+                  {t.hero.cta}
+                </button>
+              </MagneticButton>
             </Link>
           </div>
         </div>

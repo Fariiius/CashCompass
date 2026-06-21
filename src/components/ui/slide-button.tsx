@@ -155,7 +155,7 @@ export const SlideButton = forwardRef<HTMLButtonElement, SlideButtonProps>(
                 style={{
                   width: adjustedWidth,
                 }}
-                className="absolute inset-y-0 left-0 z-0 rounded-full bg-cyan-500/80"
+                className="absolute inset-y-0 left-0 z-0 rounded-full bg-neutral-500/50"
               />
               <div className="absolute z-0 flex items-center justify-center pointer-events-none pl-8 w-full text-zinc-300 font-medium text-sm">
                 {text}
@@ -182,7 +182,7 @@ export const SlideButton = forwardRef<HTMLButtonElement, SlideButtonProps>(
                   {...props}
                   size="icon"
                   className={cn(
-                    "shadow-button rounded-full drop-shadow-xl h-14 w-14 bg-gradient-to-br from-teal-400 to-cyan-500 text-black hover:scale-105",
+                    "shadow-button rounded-full drop-shadow-xl h-14 w-14 bg-gradient-to-br from-neutral-200 to-neutral-400 text-black hover:scale-105",
                     isDragging && "scale-105 transition-transform",
                     className
                   )}
@@ -206,7 +206,7 @@ export const SlideButton = forwardRef<HTMLButtonElement, SlideButtonProps>(
                   disabled={status === "loading"}
                   {...props}
                   className={cn(
-                    "size-full rounded-full transition-all duration-300 bg-gradient-to-br from-teal-400 to-cyan-500 text-black",
+                    "size-full rounded-full transition-all duration-300 bg-gradient-to-br from-neutral-200 to-neutral-400 text-black",
                     className
                   )}
                 >

@@ -10,12 +10,11 @@ const LinkedinIcon = ({ size = 20 }: { size?: number }) => (
     <circle cx="4" cy="4" r="2"></circle>
   </svg>
 );
-import { SparklesCore } from '@/components/ui/sparkles';
-import { NavBar } from '@/components/ui/tubelight-navbar';
-import { AnimatedLayerButton } from '@/components/ui/animated-layer-button';
+import { ShinyButton } from '@/components/ui/shiny-button';
 import { LanguageSelector } from '@/components/ui/language-selector';
 import { useLanguage } from '@/context/LanguageContext';
-import { MagneticButton } from '@/components/ui/magnetic-button';
+import { SparklesCore } from '@/components/ui/sparkles';
+import { NavBar } from '@/components/ui/tubelight-navbar';
 import Link from 'next/link';
 
 export const HeroSection = () => {
@@ -67,13 +66,11 @@ export const HeroSection = () => {
           <p className="text-neutral-600 dark:text-neutral-300 cursor-default text-center text-xl sm:text-2xl mt-4">
             {t.hero.subtitle}
           </p>
-          <div className="mt-8 relative z-[9999] pointer-events-auto h-[100px] w-[300px] flex justify-center items-center">
-            <Link href="/bot" className="absolute top-1/2 left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center">
-              <MagneticButton>
-                <button className="px-8 py-4 rounded-full bg-black text-white dark:bg-white dark:text-black font-semibold text-lg hover:scale-105 hover:shadow-xl transition-all duration-300">
-                  {t.hero.cta}
-                </button>
-              </MagneticButton>
+          <div className="mt-8 relative z-[9999] pointer-events-auto flex justify-center items-center">
+            <Link href="/bot" className="w-full flex justify-center">
+              <ShinyButton className="px-8 py-4 text-lg font-bold rounded-full w-auto bg-black text-white dark:bg-white dark:text-black">
+                {t.hero.cta}
+              </ShinyButton>
             </Link>
           </div>
         </div>
@@ -99,7 +96,7 @@ export const HeroSection = () => {
             </div>
 
             <div className="mt-8 flex flex-col items-center justify-center relative z-[9999] pointer-events-auto">
-              <AnimatedLayerButton
+              <ShinyButton
                 onClick={(e) => {
                   e.preventDefault();
                   const target = e.currentTarget;
@@ -107,9 +104,10 @@ export const HeroSection = () => {
                   setTimeout(() => target.blur(), 100);
                   window.open("https://ieeexplore.ieee.org/document/11442061", "_blank", "noopener,noreferrer");
                 }}
+                className="bg-black/10 dark:bg-white/10"
               >
                 {t.about.btn}
-              </AnimatedLayerButton>
+              </ShinyButton>
             </div>
           </div>
         </div>

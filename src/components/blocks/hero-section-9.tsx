@@ -22,7 +22,7 @@ const navItems = [
 
 export const HeroSection = () => {
   return (
-    <div className="bg-black text-white relative font-sans antialiased">
+    <div className="bg-white dark:bg-black text-black dark:text-white relative font-sans antialiased transition-colors duration-300">
       {/* Global Canvas Background */}
       <div className="fixed inset-0 z-0 w-full h-full pointer-events-none overflow-hidden">
         {/* Background Logo */}
@@ -40,8 +40,8 @@ export const HeroSection = () => {
           minSize={0.6}
           maxSize={1.4}
           particleDensity={100}
-          className="w-full h-full absolute inset-0 z-10 pointer-events-none"
-          particleColor="#00ff00"
+          className="w-full h-full absolute inset-0 z-10 pointer-events-none opacity-50 dark:opacity-100"
+          particleColor="#888888"
           speed={0.5}
         />
       </div>
@@ -54,10 +54,10 @@ export const HeroSection = () => {
 
         {/* Hero Content */}
         <div className="flex flex-col items-center justify-center gap-4 relative z-20 h-full">
-          <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
+          <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-800 to-neutral-400 dark:from-neutral-50 dark:to-neutral-400">
             Cash Compass
           </h1>
-          <p className="text-neutral-300 cursor-default text-center text-xl sm:text-2xl mt-4">
+          <p className="text-neutral-600 dark:text-neutral-300 cursor-default text-center text-xl sm:text-2xl mt-4">
             is brighter than you think
           </p>
           <div className="mt-8 relative z-[9999] pointer-events-auto">
@@ -65,7 +65,7 @@ export const HeroSection = () => {
               onClick={() => {
                 document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
               }}
-              className="px-8 py-3 rounded-full bg-white text-black font-semibold text-lg hover:scale-105 transition-all duration-300"
+              className="px-8 py-3 rounded-full bg-black text-white dark:bg-white dark:text-black font-semibold text-lg hover:scale-105 transition-all duration-300"
             >
               Try Cash Compass
             </button>
@@ -77,7 +77,7 @@ export const HeroSection = () => {
       <section id="about" className="relative pt-24 pb-48 px-6 overflow-hidden">
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-50 to-neutral-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-800 to-neutral-400 dark:from-neutral-50 dark:to-neutral-400">
               About Cash Compass
             </span>
           </h2>
@@ -85,13 +85,13 @@ export const HeroSection = () => {
 
           <div className="flex flex-col gap-8 text-center items-center">
             <div className="space-y-6">
-              <p className="text-xl sm:text-2xl text-zinc-100 leading-relaxed">
-                <strong className="text-white">Cash Compass</strong> is a Gen-AI powered banking chatbot designed to advance ethical financial inclusion in Egyptian retail banking. Serving as your personal <strong className="text-white">financial advisor</strong>, the system provides real-time, context-aware bilingual (Arabic & English) guidance.
+              <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-100 leading-relaxed">
+                <strong className="text-black dark:text-white">Cash Compass</strong> is a Gen-AI powered banking chatbot designed to advance ethical financial inclusion in Egyptian retail banking. Serving as your personal <strong className="text-black dark:text-white">financial advisor</strong>, the system provides real-time, context-aware bilingual (Arabic & English) guidance.
               </p>
-              <p className="text-xl sm:text-2xl text-zinc-100 leading-relaxed">
-                We aggregate data from <strong className="text-white">all major Egyptian banks</strong>, allowing you to effortlessly compare accounts, loans, cards, and investment products in one place. Beyond banking, Cash Compass monitors the Egyptian stock market, including <strong className="text-white">EGX 30 and EGX 70</strong>, and predicts closing prices to empower your investment decisions.
+              <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-100 leading-relaxed">
+                We aggregate data from <strong className="text-black dark:text-white">all major Egyptian banks</strong>, allowing you to effortlessly compare accounts, loans, cards, and investment products in one place. Beyond banking, Cash Compass monitors the Egyptian stock market, including <strong className="text-black dark:text-white">EGX 30 and EGX 70</strong>, and predicts closing prices to empower your investment decisions.
               </p>
-              <p className="text-xl sm:text-2xl text-zinc-100 leading-relaxed">
+              <p className="text-xl sm:text-2xl text-zinc-700 dark:text-zinc-100 leading-relaxed">
                 Built on ethical design principles and advanced retrieval-augmented generation (RAG) architecture, Cash Compass guarantees privacy, fairness, transparency, and accessibility—ensuring trustworthy and scalable digital financial advisory for everyone.
               </p>
             </div>
@@ -117,12 +117,12 @@ export const HeroSection = () => {
       <section id="founders" className="relative py-24 px-6 overflow-hidden">
         <div className="relative z-10 max-w-5xl mx-auto">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-50 to-neutral-400">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-800 to-neutral-400 dark:from-neutral-50 dark:to-neutral-400">
               Our Founders
             </span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-neutral-300 to-neutral-600 mx-auto rounded-full mb-6" />
-          <p className="text-center text-zinc-400 text-lg mb-16 max-w-2xl mx-auto">
+          <p className="text-center text-zinc-600 dark:text-zinc-400 text-lg mb-16 max-w-2xl mx-auto">
             Meet the minds behind Cash Compass — passionate about reshaping finance in Egypt.
           </p>
 
@@ -154,31 +154,31 @@ export const HeroSection = () => {
             ].map((founder) => (
               <div
                 key={founder.name}
-                className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 hover:border-neutral-400/30 transition-all duration-300 w-full max-w-sm flex flex-col items-center"
+                className="group bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10 rounded-3xl p-8 text-center hover:bg-black/10 dark:hover:bg-white/10 hover:border-neutral-600/30 dark:hover:border-neutral-400/30 transition-all duration-300 w-full max-w-sm flex flex-col items-center"
               >
-                <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-neutral-300 to-neutral-600 flex items-center justify-center text-3xl font-bold text-white shadow-lg shadow-neutral-500/20 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
+                <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-neutral-200 to-neutral-400 dark:from-neutral-300 dark:to-neutral-600 flex items-center justify-center text-3xl font-bold text-black dark:text-white shadow-lg shadow-neutral-500/20 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
                   {founder.image ? (
                     <img src={founder.image} alt={founder.name} className="w-full h-full object-cover" />
                   ) : (
                     founder.name.split(' ').map(n => n[0]).slice(0, 2).join('')
                   )}
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-2">{founder.name}</h3>
-                <p className="text-zinc-300 text-sm font-semibold tracking-wide uppercase mb-4">{founder.role}</p>
-                <p className="text-zinc-400 text-sm leading-relaxed flex-grow mb-6 text-left">{founder.desc}</p>
+                <h3 className="text-2xl font-bold text-black dark:text-white mb-2">{founder.name}</h3>
+                <p className="text-zinc-600 dark:text-zinc-300 text-sm font-semibold tracking-wide uppercase mb-4">{founder.role}</p>
+                <p className="text-zinc-700 dark:text-zinc-400 text-sm leading-relaxed flex-grow mb-6 text-left">{founder.desc}</p>
                 
                 <div className="flex items-center gap-4 mt-auto">
                   <a 
                     href={founder.linkedin} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="p-2 rounded-full bg-white/5 hover:bg-white/20 transition-colors text-white/70 hover:text-white"
+                    className="p-2 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/20 dark:hover:bg-white/20 transition-colors text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white"
                   >
                     <LinkedinIcon size={20} />
                   </a>
                   <a 
                     href={founder.email} 
-                    className="p-2 rounded-full bg-white/5 hover:bg-white/20 transition-colors text-white/70 hover:text-white"
+                    className="p-2 rounded-full bg-black/5 dark:bg-white/5 hover:bg-black/20 dark:hover:bg-white/20 transition-colors text-black/70 dark:text-white/70 hover:text-black dark:hover:text-white"
                   >
                     <Mail size={20} />
                   </a>

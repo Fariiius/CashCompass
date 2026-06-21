@@ -16,7 +16,7 @@ const AnimatedLayerButton = React.forwardRef<
       className={cn(
         // Base styles for the button
         "group relative flex h-[50px] w-[220px] items-center justify-center overflow-hidden rounded-[30px] border-none",
-        "cursor-pointer bg-white text-black shadow-[8px_8px_0px_hsl(var(--foreground))] transition-all duration-300 ease-in-out",
+        "cursor-pointer bg-black text-white dark:bg-white dark:text-black shadow-[8px_8px_0px_hsl(var(--foreground))] transition-all duration-300 ease-in-out",
         "active:translate-y-[5px] active:shadow-[3px_3px_0px_hsl(var(--foreground))]",
         "hover:brightness-110",
         "pointer-events-auto",
@@ -42,7 +42,7 @@ const AnimatedLayerButton = React.forwardRef<
         <path fill="hsl(var(--primary))" d="M1006.72,744.28c2.81,143.23-110.17,257.35-247.42,261.9C613.15,1011,498.22,895.93,493.71,758.88,488.93,613.71,603,498,740.69,493.28,886.73,488.24,1004,603.87,1006.72,744.28Z" transform="translate(-202.29 -201.89)"/>
         <path fill="hsl(var(--primary-foreground))" d="M607.55,553.77c5.13,3.72,10.28,7.42,15.4,11.15l124.12,90.24a8.57,8.57,0,0,1,1.2.84c1.26,1.27,2.35,1.09,3.77,0,6.36-4.74,12.82-9.35,19.24-14l118.23-85.89c1.07-.78,2.17-1.54,3.28-2.32.82,1.1,0,2-.27,2.77Q866.29,637.48,840,718.38c-1.11,3.42-1.13,3.42,1.81,5.56l136,98.81c1.17.86,2.33,1.74,3.79,2.83-1.48.73-2.79.45-4,.45q-84.07,0-168.16,0h-.73c-3.7,0-3.68,0-4.8,3.43q-26.1,80.4-52.23,160.78c-.4,1.21-.45,2.66-1.77,3.6L735,948.24q-19.34-59.52-38.68-119c-1-3.16-1-3.17-4.6-3.17q-84.27,0-168.53,0a10.57,10.57,0,0,1-4.24-.34,13.17,13.17,0,0,1,3.33-2.77q67.55-49.08,135.1-98.18c5-3.63,4.38-1.8,2.43-7.83q-25.94-80.07-52-160.11c-.3-.91-.57-1.83-.85-2.75Z" transform="translate(-202.29 -201.89)"/>
       </svg>
-      <span className="z-10 font-bold text-black transition-colors duration-300 group-hover:text-transparent text-[1.1em] select-none pointer-events-none">
+      <span className="z-10 font-bold text-white dark:text-black transition-colors duration-300 group-hover:text-transparent text-[1.1em] select-none pointer-events-none">
         {children}
       </span>
     </button>

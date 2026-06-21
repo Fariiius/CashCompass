@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { LucideIcon } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { ThemeToggle } from "./theme-toggle"
 
 interface NavItem {
   name: string
@@ -70,7 +71,7 @@ export function NavBar({ items, className }: NavBarProps) {
         className,
       )}
     >
-      <div className="flex items-center gap-0.5 sm:gap-3 bg-white/10 border border-white/20 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+      <div className="flex items-center gap-0.5 sm:gap-3 bg-white/50 border border-black/10 dark:bg-white/10 dark:border-white/20 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
         <div className="pl-1 sm:pl-2 flex items-center justify-center shrink-0">
           <img 
             src="/logo.png" 
@@ -89,15 +90,15 @@ export function NavBar({ items, className }: NavBarProps) {
               onClick={() => setActiveTab(item.name)}
               className={cn(
                 "relative cursor-pointer text-sm font-semibold px-2 sm:px-6 py-1.5 sm:py-2 rounded-full transition-colors select-none",
-                "text-white/70 hover:text-white",
-                isActive && "bg-white/15 text-white",
+                "text-black/70 hover:text-black dark:text-white/70 dark:hover:text-white",
+                isActive && "bg-black/10 text-black dark:bg-white/15 dark:text-white",
               )}
             >
               <span className="inline text-xs sm:text-sm whitespace-nowrap">{item.name}</span>
               {isActive && (
                 <motion.div
                   layoutId="lamp"
-                  className="absolute inset-0 w-full bg-white/10 rounded-full -z-10"
+                  className="absolute inset-0 w-full bg-black/5 dark:bg-white/10 rounded-full -z-10"
                   initial={false}
                   transition={{
                     type: "spring",
@@ -105,16 +106,20 @@ export function NavBar({ items, className }: NavBarProps) {
                     damping: 30,
                   }}
                 >
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-white rounded-t-full">
-                    <div className="absolute w-12 h-6 bg-white/30 rounded-full blur-md -top-2 -left-2" />
-                    <div className="absolute w-8 h-6 bg-white/30 rounded-full blur-md -top-1" />
-                    <div className="absolute w-4 h-4 bg-white/30 rounded-full blur-sm top-0 left-2" />
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-black dark:bg-white rounded-t-full">
+                    <div className="absolute w-12 h-6 bg-black/30 dark:bg-white/30 rounded-full blur-md -top-2 -left-2" />
+                    <div className="absolute w-8 h-6 bg-black/30 dark:bg-white/30 rounded-full blur-md -top-1" />
+                    <div className="absolute w-4 h-4 bg-black/30 dark:bg-white/30 rounded-full blur-sm top-0 left-2" />
                   </div>
                 </motion.div>
               )}
             </Link>
           )
         })}
+        
+        <div className="flex items-center pr-1 sm:pr-2 shrink-0">
+          <ThemeToggle />
+        </div>
       </div>
     </div>
   )

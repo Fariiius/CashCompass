@@ -18,11 +18,11 @@ export const HeroSection = () => {
       {/* Global Canvas Background */}
       <div className="fixed inset-0 z-0 w-full h-full pointer-events-none overflow-hidden">
         {/* Background Logo */}
-        <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[800px] md:h-[800px] lg:w-[1000px] lg:h-[1000px] opacity-10 md:opacity-5 z-0">
+        <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[800px] md:h-[800px] lg:w-[1000px] lg:h-[1000px] opacity-30 md:opacity-20 z-0">
           <img 
             src="/logo.png" 
             alt="" 
-            className="w-full h-full object-contain"
+            className="w-full h-full object-contain mix-blend-screen"
           />
         </div>
 

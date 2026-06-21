@@ -106,7 +106,7 @@ export default function BotPage() {
   };
 
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-[#121212] text-gray-100 font-sans">
+    <div className="fixed inset-0 flex w-full bg-[#121212] text-gray-100 font-sans overflow-hidden">
       {/* Sidebar */}
       <AnimatePresence initial={false}>
         {isSidebarOpen && (

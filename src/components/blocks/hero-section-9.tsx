@@ -75,7 +75,11 @@ export const HeroSection = () => {
             </div>
             
             <div className="mt-8 flex flex-col items-center justify-center">
-              <AnimatedLayerButton onClick={() => window.open('https://ieeexplore.ieee.org/document/11442061', '_blank')}>
+              <AnimatedLayerButton 
+                href="https://ieeexplore.ieee.org/document/11442061" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
                 Read Our Publication
               </AnimatedLayerButton>
             </div>

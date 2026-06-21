@@ -74,14 +74,20 @@ export const HeroSection = () => {
               </p>
             </div>
             
-            <div className="mt-8 flex flex-col items-center justify-center relative z-50 pointer-events-auto">
-              <AnimatedLayerButton 
+            <div className="mt-8 flex flex-col items-center justify-center relative z-[9999] pointer-events-auto">
+              <a 
                 href="https://ieeexplore.ieee.org/document/11442061" 
                 target="_blank" 
                 rel="noopener noreferrer"
+                className="block cursor-pointer outline-none touch-manipulation"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
               >
-                Read Our Publication
-              </AnimatedLayerButton>
+                <AnimatedLayerButton>
+                  Read Our Publication
+                </AnimatedLayerButton>
+              </a>
             </div>
           </div>
         </div>

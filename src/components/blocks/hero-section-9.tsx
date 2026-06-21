@@ -14,7 +14,7 @@ const navItems = [
 
 export const HeroSection = () => {
   return (
-    <div className="bg-black text-white relative">
+    <div className="bg-black text-white relative font-sans antialiased">
       {/* Global Canvas Background */}
       <div className="fixed inset-0 z-0 w-full h-full pointer-events-none">
         <SparklesCore
@@ -99,7 +99,7 @@ export const HeroSection = () => {
             Meet the minds behind Cash Compass — passionate about reshaping finance in Egypt.
           </p>
           
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+          <div className="flex flex-wrap justify-center gap-8">
             {[
               { name: "Fares Elsayed", role: "CEO & Co-Founder", desc: "Visionary leader with a passion for financial technology and innovation." },
               { name: "Ahmed Hassan", role: "CTO & Co-Founder", desc: "Technical architect building the future of fintech in the Middle East." },
@@ -107,14 +107,14 @@ export const HeroSection = () => {
             ].map((founder) => (
               <div
                 key={founder.name}
-                className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 hover:border-cyan-400/30 transition-all duration-300"
+                className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8 text-center hover:bg-white/10 hover:border-teal-400/30 transition-all duration-300 w-full max-w-sm flex flex-col items-center"
               >
-                <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-2xl font-bold text-white shadow-lg shadow-cyan-500/20">
+                <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-teal-500 to-cyan-500 flex items-center justify-center text-3xl font-bold text-white shadow-lg shadow-teal-500/20 group-hover:scale-110 transition-transform duration-300">
                   {founder.name.split(' ').map(n => n[0]).join('')}
                 </div>
-                <h3 className="text-xl font-bold text-white mb-1">{founder.name}</h3>
-                <p className="text-cyan-400 text-sm font-medium mb-4">{founder.role}</p>
-                <p className="text-zinc-400 text-sm leading-relaxed">{founder.desc}</p>
+                <h3 className="text-2xl font-bold text-white mb-2">{founder.name}</h3>
+                <p className="text-zinc-300 text-sm font-semibold tracking-wide uppercase mb-4">{founder.role}</p>
+                <p className="text-zinc-400 text-base leading-relaxed">{founder.desc}</p>
               </div>
             ))}
           </div>

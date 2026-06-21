@@ -48,6 +48,12 @@ export function NavBar({ items, className }: NavBarProps) {
           }
         }
       }
+      
+      // Check if scrolled to bottom
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+        currentActive = items[items.length - 1].name
+      }
+      
       setActiveTab(currentActive)
     }
 

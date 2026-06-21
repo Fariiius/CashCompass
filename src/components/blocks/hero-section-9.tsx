@@ -127,7 +127,7 @@ export const HeroSection = () => {
             {t.founders.subtitle}
           </p>
 
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
               { 
                 name: language.startsWith('ar') ? "فارس السيد علي" : "Fares El-Sayed Aly", 
@@ -157,7 +157,7 @@ export const HeroSection = () => {
               <div
                 key={founder.name}
                 className={cn(
-                  "group bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10 rounded-3xl p-8 text-center hover:bg-black/10 dark:hover:bg-white/10 hover:border-neutral-600/30 dark:hover:border-neutral-400/30 transition-all duration-300 w-full max-w-sm flex flex-col items-center",
+                  "group bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10 rounded-3xl p-8 text-center hover:bg-black/10 dark:hover:bg-white/10 hover:border-neutral-600/30 dark:hover:border-neutral-400/30 transition-all duration-300 w-full flex flex-col items-center",
                   index === 0 ? "order-1 md:order-2" : index === 1 ? "order-2 md:order-1" : "order-3"
                 )}
               >

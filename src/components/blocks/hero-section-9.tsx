@@ -4,6 +4,7 @@ import React from 'react';
 import { Home, User, Users } from 'lucide-react';
 import { SparklesCore } from '@/components/ui/sparkles';
 import { NavBar } from '@/components/ui/tubelight-navbar';
+import { SlideButton } from '@/components/ui/slide-button';
 
 const navItems = [
   { name: 'Home', url: '#home', icon: Home },
@@ -63,32 +64,24 @@ export const HeroSection = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-lg text-zinc-300 leading-relaxed mb-6">
-                Cash Compass is your trusted Egyptian financial advisor. We help you navigate the complex world of investments and personal finance with cutting-edge tools and expert insights.
+                <strong className="text-white">Cash Compass</strong> is a Gen-AI powered banking chatbot designed to advance ethical financial inclusion in Egyptian retail banking. Serving as your personal <strong className="text-white">financial advisor</strong>, the system provides real-time, context-aware bilingual (Arabic & English) guidance.
               </p>
               <p className="text-lg text-zinc-300 leading-relaxed mb-6">
-                Our platform provides real-time market analysis, personalized investment recommendations, and comprehensive expense tracking — all designed specifically for the Egyptian market.
+                We aggregate data from <strong className="text-white">all major Egyptian banks</strong>, allowing you to effortlessly compare accounts, loans, cards, and investment products in one place. Beyond banking, Cash Compass monitors the Egyptian stock market, including <strong className="text-white">EGX 30 and EGX 70</strong>, and predicts closing prices to empower your investment decisions.
               </p>
               <p className="text-lg text-zinc-300 leading-relaxed">
-                Whether you&apos;re a seasoned investor or just starting your financial journey, Cash Compass gives you the confidence to make smarter decisions with your money.
+                Built on ethical design principles and advanced retrieval-augmented generation (RAG) architecture, Cash Compass guarantees privacy, fairness, transparency, and accessibility—ensuring trustworthy and scalable digital financial advisory for everyone.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 transition-all duration-300">
-                <p className="text-3xl font-extrabold text-cyan-400 mb-2">50K+</p>
-                <p className="text-sm text-zinc-400">Active Users</p>
-              </div>
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 transition-all duration-300">
-                <p className="text-3xl font-extrabold text-teal-400 mb-2">$2M+</p>
-                <p className="text-sm text-zinc-400">Invested</p>
-              </div>
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 transition-all duration-300">
-                <p className="text-3xl font-extrabold text-emerald-400 mb-2">99%</p>
-                <p className="text-sm text-zinc-400">Satisfaction</p>
-              </div>
-              <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 transition-all duration-300">
-                <p className="text-3xl font-extrabold text-cyan-400 mb-2">24/7</p>
-                <p className="text-sm text-zinc-400">Support</p>
-              </div>
+            <div className="flex justify-center items-center">
+               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300 flex flex-col items-center gap-6 max-w-sm w-full">
+                  <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">Read Our Publication</h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed">Discover the academic research, architecture, and ethical design principles behind Cash Compass on IEEE Xplore.</p>
+                  <SlideButton 
+                    text="Slide to Read" 
+                    onComplete={() => window.open('https://ieeexplore.ieee.org/document/11442061', '_blank')} 
+                  />
+               </div>
             </div>
           </div>
         </div>

@@ -19,7 +19,7 @@ import {
 import { Check, Loader2, SendHorizontal, X, ExternalLink } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Button, ButtonProps } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 
 const DRAG_CONSTRAINTS = { left: 0, right: 155 }
 const DRAG_THRESHOLD = 0.9
@@ -88,7 +88,7 @@ const useButtonStatus = (resolveTo: "success" | "error", onComplete?: () => void
   return { status, handleSubmit }
 }
 
-export type SlideButtonProps = ButtonProps & {
+export type SlideButtonProps = React.ComponentProps<typeof Button> & {
   onComplete?: () => void;
   text?: string;
 };

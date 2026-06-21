@@ -53,7 +53,7 @@ export const HeroSection = () => {
 
       {/* About Section */}
       <section id="about" className="relative py-24 px-6 overflow-hidden">
-        <div className="relative z-10 max-w-5xl mx-auto">
+        <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-6">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 to-cyan-400">
               About Cash Compass
@@ -61,27 +61,26 @@ export const HeroSection = () => {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-teal-500 to-cyan-500 mx-auto rounded-full mb-12" />
           
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <p className="text-lg text-zinc-300 leading-relaxed mb-6">
+          <div className="flex flex-col gap-8 text-center items-center">
+            <div className="space-y-6">
+              <p className="text-xl sm:text-2xl text-zinc-100 leading-relaxed">
                 <strong className="text-white">Cash Compass</strong> is a Gen-AI powered banking chatbot designed to advance ethical financial inclusion in Egyptian retail banking. Serving as your personal <strong className="text-white">financial advisor</strong>, the system provides real-time, context-aware bilingual (Arabic & English) guidance.
               </p>
-              <p className="text-lg text-zinc-300 leading-relaxed mb-6">
+              <p className="text-xl sm:text-2xl text-zinc-100 leading-relaxed">
                 We aggregate data from <strong className="text-white">all major Egyptian banks</strong>, allowing you to effortlessly compare accounts, loans, cards, and investment products in one place. Beyond banking, Cash Compass monitors the Egyptian stock market, including <strong className="text-white">EGX 30 and EGX 70</strong>, and predicts closing prices to empower your investment decisions.
               </p>
-              <p className="text-lg text-zinc-300 leading-relaxed">
+              <p className="text-xl sm:text-2xl text-zinc-100 leading-relaxed">
                 Built on ethical design principles and advanced retrieval-augmented generation (RAG) architecture, Cash Compass guarantees privacy, fairness, transparency, and accessibility—ensuring trustworthy and scalable digital financial advisory for everyone.
               </p>
             </div>
-            <div className="flex justify-center items-center">
-               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300 flex flex-col items-center gap-6 max-w-sm w-full">
-                  <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">Read Our Publication</h3>
-                  <p className="text-zinc-400 text-sm leading-relaxed">Discover the academic research, architecture, and ethical design principles behind Cash Compass on IEEE Xplore.</p>
-                  <SlideButton 
-                    text="Slide to Read" 
-                    onComplete={() => window.open('https://ieeexplore.ieee.org/document/11442061', '_blank')} 
-                  />
-               </div>
+            
+            <div className="mt-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 text-center hover:bg-white/10 transition-all duration-300 flex flex-col items-center gap-6 max-w-md w-full">
+              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">Read Our Publication</h3>
+              <p className="text-zinc-300 text-base leading-relaxed">Discover the academic research, architecture, and ethical design principles behind Cash Compass on IEEE Xplore.</p>
+              <SlideButton 
+                text="Slide to Read" 
+                onComplete={() => window.open('https://ieeexplore.ieee.org/document/11442061', '_blank')} 
+              />
             </div>
           </div>
         </div>

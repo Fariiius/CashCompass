@@ -31,6 +31,32 @@ export function NavBar({ items, className }: NavBarProps) {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = items.map(item => {
+        const el = document.getElementById(item.url.replace('#', ''))
+        return { name: item.name, el }
+      })
+      
+      let currentActive = items[0].name
+      for (const { name, el } of sections) {
+        if (el) {
+          const rect = el.getBoundingClientRect()
+          // If the top of the section is somewhat near the top of the viewport
+          if (rect.top <= 300 && rect.bottom >= 300) {
+            currentActive = name
+          }
+        }
+      }
+      setActiveTab(currentActive)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    // Run once on mount to set initial state
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [items])
+
   return (
     <div
       className={cn(

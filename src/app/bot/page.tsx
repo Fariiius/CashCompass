@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { useLanguage } from "@/context/LanguageContext";
 import { PromptInputBox } from "@/components/ui/ai-prompt-box";
+import { ShinyButton } from "@/components/ui/shiny-button";
 import {
   Menu,
   ChevronLeft,
@@ -48,6 +49,15 @@ type Message = {
   id: string;
   role: "user" | "bot";
   content: string;
+  isStreaming?: boolean;
+};
+
+type Stock = {
+  symbol: string;
+  name: string;
+  price: string;
+  change: string;
+  signal: string;
 };
 
 // --- Main Component ---
@@ -55,6 +65,8 @@ type Message = {
 export default function BotPage() {
   const { t, language } = useLanguage();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [stocks, setStocks] = useState<Stock[]>([]);
+  const [isLoadingStocks, setIsLoadingStocks] = useState(true);
   const [messages, setMessages] = useState<Message[]>([
     {
       id: "welcome",
@@ -66,6 +78,24 @@ export default function BotPage() {
   ]);
   const [isBotTyping, setIsBotTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Fetch live EGX data on load
+    const fetchStocks = async () => {
+      try {
+        const res = await fetch("/api/stocks");
+        if (res.ok) {
+          const data = await res.json();
+          setStocks(data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch stocks:", error);
+      } finally {
+        setIsLoadingStocks(false);
+      }
+    };
+    fetchStocks();
+  }, []);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -82,25 +112,60 @@ export default function BotPage() {
     setMessages((prev) => [...prev, userMessage]);
     setIsBotTyping(true);
 
-    // Simulate Bot Response
+    // Simulate Streaming Bot Response
     setTimeout(() => {
-      let botResponse = "I am currently analyzing your request...";
+      setIsBotTyping(false);
+      const botMessageId = (Date.now() + 1).toString();
       
+      let fullResponse = "";
       if (text.includes("[Simulate Analysis]")) {
-        botResponse = `Based on real-time data analysis of the Egyptian Market:\n\nThe current signals suggest strong bullish momentum due to recent central bank policy adjustments. I recommend evaluating your risk tolerance before committing capital.`;
+        // Extract the symbol from the prompt
+        const match = text.match(/analyze stock (.*?) \(/i);
+        const symbol = match ? match[1] : "this stock";
+        const stockData = stocks.find(s => s.symbol === symbol);
+        const price = stockData ? stockData.price : "current levels";
+        
+        fullResponse = `Based on my real-time analysis of the Egyptian Market, **${symbol}** is currently trading at **${price} EGP**.\n\n### Technical Analysis & Prediction\nThe moving averages over the last 14 days indicate a strong consolidation phase. However, given the recent macroeconomic indicators from the Central Bank of Egypt regarding interest rates, we are likely to see a breakout within the next 48 hours.\n\n**Prediction for tomorrow's close:** I expect the price to test the upper resistance level, potentially closing 1.5% to 2% higher than today's value, assuming trading volume remains above the 30-day average.\n\n### Recommended Strategy\nSince the technical signal indicates a bullish trend, my strategic recommendation is to **accumulate** on any intraday dips. Ensure you set a tight stop-loss 3% below the current support level to mitigate downside risk.`;
       } else if (text.toLowerCase().includes("loan")) {
-        botResponse = "Currently, the National Bank of Egypt (NBE) and Banque Misr offer some of the most competitive personal loan rates, hovering around 22-24% decreasing annually. Would you like me to calculate your potential monthly installment?";
+        fullResponse = "Currently, the National Bank of Egypt (NBE) and Banque Misr offer some of the most competitive personal loan rates, hovering around 22-24% decreasing annually. Would you like me to calculate your potential monthly installment based on your required amount?";
+      } else {
+        fullResponse = "I can help you analyze EGX stocks, compare bank loans, or provide the latest prices for precious metals. How would you like to proceed?";
       }
 
       setMessages((prev) => [
         ...prev,
-        { id: (Date.now() + 1).toString(), role: "bot", content: botResponse },
+        { id: botMessageId, role: "bot", content: "", isStreaming: true },
       ]);
-      setIsBotTyping(false);
-    }, 1500);
+
+      // Stream the response word by word
+      const words = fullResponse.split(" ");
+      let currentWordIndex = 0;
+      
+      const streamInterval = setInterval(() => {
+        if (currentWordIndex < words.length) {
+          setMessages((prev) => 
+            prev.map(msg => 
+              msg.id === botMessageId 
+                ? { ...msg, content: msg.content + (currentWordIndex === 0 ? "" : " ") + words[currentWordIndex] }
+                : msg
+            )
+          );
+          currentWordIndex++;
+          scrollToBottom();
+        } else {
+          clearInterval(streamInterval);
+          setMessages((prev) => 
+            prev.map(msg => 
+              msg.id === botMessageId ? { ...msg, isStreaming: false } : msg
+            )
+          );
+        }
+      }, 50); // 50ms per word
+
+    }, 1000);
   };
 
-  const injectStockPrompt = (stock: typeof MOCK_STOCKS[0]) => {
+  const injectStockPrompt = (stock: Stock) => {
     const prompt = `[Simulate Analysis] Please analyze stock ${stock.symbol} (${stock.name}). The current price is ${stock.price} EGP. Predict tomorrow's closing price, explain the reasoning behind this prediction, and outline a strategy for a '${stock.signal}' position.`;
     handleSendMessage(prompt);
   };
@@ -131,41 +196,56 @@ export default function BotPage() {
               </Link>
             </div>
 
-            {/* Navigation Lists */}
             <div className="flex-1 p-3 space-y-6">
               
+              <div className="px-2 pb-2">
+                <Link href="/" className="block w-full">
+                  <ShinyButton className="w-full text-center py-2 px-4 !rounded-lg text-sm bg-[#2a2a2a]/50 text-gray-200 border-[#444] hover:bg-[#333]/70">
+                    <span className="flex items-center justify-center gap-2">
+                      <ChevronLeft className="w-4 h-4" /> Back to Home
+                    </span>
+                  </ShinyButton>
+                </Link>
+              </div>
+
               {/* Markets Section */}
               <div>
                 <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2 px-2 flex items-center gap-2">
                   <TrendingUp className="w-3.5 h-3.5" /> EGX Markets
                 </h3>
                 <div className="space-y-1">
-                  {MOCK_STOCKS.map((stock) => (
-                    <button
-                      key={stock.symbol}
-                      onClick={() => injectStockPrompt(stock)}
-                      className="w-full text-left px-3 py-2 rounded-lg hover:bg-[#2a2a2a] transition-colors group flex flex-col"
-                    >
-                      <div className="flex justify-between items-center w-full">
-                        <span className="font-medium text-sm text-gray-200">{stock.symbol}</span>
-                        <span className="text-xs font-mono">{stock.price}</span>
-                      </div>
-                      <div className="flex justify-between items-center w-full mt-1">
-                        <span className="text-xs text-gray-500 truncate pr-2">{stock.name}</span>
-                        <div className="flex items-center gap-2">
-                          <span className={cn("text-xs font-medium", stock.change.startsWith("+") ? "text-green-500" : "text-red-500")}>
-                            {stock.change}
-                          </span>
-                          <span className={cn(
-                            "text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-bold",
-                            stock.signal === "Buy" ? "bg-green-500/20 text-green-500" : "bg-yellow-500/20 text-yellow-500"
-                          )}>
-                            {stock.signal}
-                          </span>
+                  {isLoadingStocks ? (
+                    <div className="px-3 py-4 text-sm text-gray-500 text-center animate-pulse">
+                      Fetching live prices...
+                    </div>
+                  ) : (
+                    stocks.map((stock) => (
+                      <ShinyButton
+                        key={stock.symbol}
+                        onClick={() => injectStockPrompt(stock)}
+                        className="w-full !text-left px-3 py-2 !rounded-lg !bg-[#1f1f1f] border-[#333] hover:!bg-[#2a2a2a] group flex flex-col !h-auto"
+                      >
+                        <div className="flex justify-between items-center w-full">
+                          <span className="font-medium text-sm text-gray-200">{stock.symbol}</span>
+                          <span className="text-xs font-mono text-gray-300">{stock.price}</span>
                         </div>
-                      </div>
-                    </button>
-                  ))}
+                        <div className="flex justify-between items-center w-full mt-1">
+                          <span className="text-xs text-gray-500 truncate pr-2 font-normal">{stock.name}</span>
+                          <div className="flex items-center gap-2">
+                            <span className={cn("text-xs font-medium", stock.change.startsWith("+") ? "text-green-500" : "text-red-500")}>
+                              {stock.change}
+                            </span>
+                            <span className={cn(
+                              "text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded font-bold",
+                              stock.signal === "Buy" ? "bg-green-500/20 text-green-500" : stock.signal === "Sell" ? "bg-red-500/20 text-red-500" : "bg-yellow-500/20 text-yellow-500"
+                            )}>
+                              {stock.signal}
+                            </span>
+                          </div>
+                        </div>
+                      </ShinyButton>
+                    ))
+                  )}
                 </div>
               </div>
 
@@ -223,38 +303,60 @@ export default function BotPage() {
         </header>
 
         {/* Messages Container */}
-        <div className="flex-1 overflow-y-auto p-4 md:p-6 pb-32">
-          <div className="max-w-3xl mx-auto space-y-6">
+        <div className="flex-1 overflow-y-auto pb-48 pt-4">
+          <div className="max-w-3xl mx-auto flex flex-col gap-8 px-4">
             {messages.map((msg) => (
               <div key={msg.id} className={cn("flex w-full", msg.role === "user" ? "justify-end" : "justify-start")}>
+                {msg.role === "bot" && (
+                  <div className="flex-shrink-0 mr-4">
+                    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+                      </svg>
+                    </div>
+                  </div>
+                )}
+                
                 <div
                   className={cn(
-                    "max-w-[85%] rounded-2xl px-5 py-3.5 whitespace-pre-wrap leading-relaxed",
+                    "whitespace-pre-wrap leading-relaxed text-[15px]",
                     msg.role === "user" 
-                      ? "bg-[#2a2a2a] text-white rounded-br-sm" 
-                      : "bg-transparent text-gray-200 border border-[#333] rounded-bl-sm"
+                      ? "max-w-[75%] rounded-3xl px-5 py-3.5 bg-[#2f2f2f] text-gray-100" 
+                      : "max-w-full text-gray-200 py-1"
                   )}
                 >
                   {msg.content}
+                  {msg.isStreaming && (
+                    <span className="inline-block w-2 h-4 ml-1 bg-white animate-pulse" />
+                  )}
                 </div>
               </div>
             ))}
             {isBotTyping && (
               <div className="flex w-full justify-start">
-                <div className="max-w-[85%] rounded-2xl px-5 py-4 bg-transparent border border-[#333] rounded-bl-sm flex items-center gap-1.5">
+                <div className="flex-shrink-0 mr-4">
+                  <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-sm">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="black" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="10" />
+                      <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
+                    </svg>
+                  </div>
+                </div>
+                <div className="py-2 flex items-center gap-1.5">
                   <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                   <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
                   <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
                 </div>
               </div>
             )}
-            <div ref={messagesEndRef} />
+            <div ref={messagesEndRef} className="h-4" />
           </div>
         </div>
 
         {/* Input Area */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#121212] via-[#121212] to-transparent pt-10 pb-6 px-4 md:px-8">
-          <div className="max-w-3xl mx-auto">
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#121212] via-[#121212] to-transparent pt-12 pb-6 px-4 md:px-8 pointer-events-none">
+          <div className="max-w-3xl mx-auto pointer-events-auto">
             <PromptInputBox 
               onSend={handleSendMessage} 
               isLoading={isBotTyping} 

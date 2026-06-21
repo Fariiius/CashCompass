@@ -52,7 +52,7 @@ export const HeroSection = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="relative py-24 px-6 overflow-hidden">
+      <section id="about" className="relative pt-24 pb-48 px-6 overflow-hidden">
         <div className="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
           <h2 className="text-4xl sm:text-5xl font-extrabold text-center mb-6">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-neutral-50 to-neutral-400">

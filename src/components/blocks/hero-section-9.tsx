@@ -134,7 +134,7 @@ export const HeroSection = () => {
                 desc: "Finance and Investment graduate and published IEEE researcher with hands-on internship experience in corporate finance and HR at Ezz Steel, Egypt's largest steel manufacturer. Holder of six CFI certifications spanning financial modeling, capital markets, credit analysis, FinTech, and business intelligence. Built an AI-powered bilingual banking chatbot as a graduation project, demonstrating strong integration of finance and technology. Seeking an entry-level role in financial analysis, investment, or corporate finance.",
                 linkedin: "https://www.linkedin.com/in/fares-el-sayed-aly-b44048274/",
                 email: "mailto:fares.elsayed.mahmoud927@gmail.com",
-                image: "/fares.png"
+                image: "/fares.jpeg"
               },
               { 
                 name: "Yara Ibrahim", 
@@ -142,7 +142,7 @@ export const HeroSection = () => {
                 desc: "Assistant Professor of Finance and Investment with over 15 years of academic experience. Passionate about fintech, digital transformation, and sustainable finance, with research covering algorithmic trading, DeFi, and AI-driven innovation. Certified in AI applications and FinTech by ACCA. Serves as a Sustainable Development Ambassador with Egypt’s Ministry of Environment, promoting the integration of sustainability into financial systems and policy.",
                 linkedin: "https://www.linkedin.com/in/yara-ibrahim-250bb933/",
                 email: "mailto:dr.yara.magdy.90@gmail.com",
-                image: "/yara.png"
+                image: "/yara.jpg"
               },
               { 
                 name: "Marwan El-Bialy", 

@@ -70,7 +70,14 @@ export function NavBar({ items, className }: NavBarProps) {
         className,
       )}
     >
-      <div className="flex items-center gap-3 bg-white/10 border border-white/20 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+      <div className="flex items-center gap-2 sm:gap-3 bg-white/10 border border-white/20 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+        <div className="pl-2 flex items-center justify-center">
+          <img 
+            src="/logo.png" 
+            alt="Cash Compass" 
+            className="w-8 h-8 object-contain" 
+          />
+        </div>
         {items.map((item) => {
           const Icon = item.icon
           const isActive = activeTab === item.name

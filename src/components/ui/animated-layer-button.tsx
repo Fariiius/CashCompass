@@ -2,16 +2,17 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export interface AnimatedLayerButtonProps
-  extends React.HTMLAttributes<HTMLDivElement> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
 const AnimatedLayerButton = React.forwardRef<
-  HTMLDivElement,
+  HTMLButtonElement,
   AnimatedLayerButtonProps
 >(({ className, children, ...props }, ref) => {
   return (
-    <div
+    <button
+      type="button"
       className={cn(
         // Base styles for the button
         "group relative flex h-[50px] w-[220px] items-center justify-center overflow-hidden rounded-[30px] border-none",
@@ -44,7 +45,7 @@ const AnimatedLayerButton = React.forwardRef<
       <span className="z-10 font-bold text-black transition-colors duration-300 group-hover:text-transparent text-[1.1em] select-none pointer-events-none">
         {children}
       </span>
-    </div>
+    </button>
   );
 });
 AnimatedLayerButton.displayName = "AnimatedLayerButton";

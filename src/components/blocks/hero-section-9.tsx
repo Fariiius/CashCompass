@@ -133,21 +133,21 @@ export const HeroSection = () => {
                 role: "Founder", 
                 desc: "Passionate about reshaping finance in Egypt through innovative technology and strategic leadership.",
                 linkedin: "https://www.linkedin.com/in/fares-el-sayed-aly-b44048274/",
-                email: "mailto:fares.elsayed@example.com"
+                email: "mailto:fares.elsayed.mahmoud927@gmail.com"
               },
               { 
                 name: "Yara Ibrahim", 
                 role: "Founder", 
                 desc: "Driving operational excellence and strategic growth to build the future of fintech in the Middle East.",
                 linkedin: "https://www.linkedin.com/in/yara-ibrahim-250bb933/",
-                email: "mailto:yara.ibrahim@example.com"
+                email: "mailto:dr.yara.magdy.90@gmail.com"
               },
               { 
                 name: "Marwan El-Bialy", 
                 role: "Founder", 
                 desc: "Technical architect and visionary focused on scaling robust financial solutions and platforms.",
                 linkedin: "https://www.linkedin.com/in/marwan-el-bialy/",
-                email: "mailto:marwan.elbialy@example.com"
+                email: "mailto:marwan.bialy02@gmail.com"
               },
             ].map((founder) => (
               <div

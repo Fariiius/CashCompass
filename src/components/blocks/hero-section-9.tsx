@@ -74,7 +74,7 @@ export const HeroSection = () => {
               </p>
             </div>
             
-            <div className="mt-8 flex flex-col items-center justify-center">
+            <div className="mt-8 flex flex-col items-center justify-center relative z-50 pointer-events-auto">
               <AnimatedLayerButton 
                 href="https://ieeexplore.ieee.org/document/11442061" 
                 target="_blank" 

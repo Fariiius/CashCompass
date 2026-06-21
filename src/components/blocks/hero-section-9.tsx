@@ -34,7 +34,7 @@ export const HeroSection = () => {
       {/* Hero */}
       <section id="home" className="relative w-full h-screen overflow-hidden">
 
-        
+
         {/* Hero Content */}
         <div className="flex flex-col items-center justify-center gap-4 relative z-20 h-full">
           <h1 className="md:text-7xl text-3xl lg:text-9xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">
@@ -44,7 +44,7 @@ export const HeroSection = () => {
             is brighter than you think
           </p>
           <div className="mt-8 relative z-[9999] pointer-events-auto">
-            <button 
+            <button
               onClick={() => {
                 document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
               }}
@@ -65,7 +65,7 @@ export const HeroSection = () => {
             </span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-neutral-300 to-neutral-600 mx-auto rounded-full mb-12" />
-          
+
           <div className="flex flex-col gap-8 text-center items-center">
             <div className="space-y-6">
               <p className="text-xl sm:text-2xl text-zinc-100 leading-relaxed">
@@ -78,9 +78,9 @@ export const HeroSection = () => {
                 Built on ethical design principles and advanced retrieval-augmented generation (RAG) architecture, Cash Compass guarantees privacy, fairness, transparency, and accessibility—ensuring trustworthy and scalable digital financial advisory for everyone.
               </p>
             </div>
-            
+
             <div className="mt-8 flex flex-col items-center justify-center relative z-[9999] pointer-events-auto">
-              <AnimatedLayerButton 
+              <AnimatedLayerButton
                 onClick={(e) => {
                   e.preventDefault();
                   const target = e.currentTarget;
@@ -108,7 +108,7 @@ export const HeroSection = () => {
           <p className="text-center text-zinc-400 text-lg mb-16 max-w-2xl mx-auto">
             Meet the minds behind Cash Compass — passionate about reshaping finance in Egypt.
           </p>
-          
+
           <div className="flex flex-wrap justify-center gap-8">
             {[
               { name: "Fares Elsayed", role: "CEO & Co-Founder", desc: "Visionary leader with a passion for financial technology and innovation." },

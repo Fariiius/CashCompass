@@ -131,14 +131,14 @@ export const HeroSection = () => {
               { 
                 name: "Fares El-Sayed Aly", 
                 role: "Founder", 
-                desc: "Passionate about reshaping finance in Egypt through innovative technology and strategic leadership.",
+                desc: "Finance and Investment graduate and published IEEE researcher with hands-on internship experience in corporate finance and HR at Ezz Steel, Egypt's largest steel manufacturer. Holder of six CFI certifications spanning financial modeling, capital markets, credit analysis, FinTech, and business intelligence. Built an AI-powered bilingual banking chatbot as a graduation project, demonstrating strong integration of finance and technology. Seeking an entry-level role in financial analysis, investment, or corporate finance.",
                 linkedin: "https://www.linkedin.com/in/fares-el-sayed-aly-b44048274/",
                 email: "mailto:fares.elsayed.mahmoud927@gmail.com"
               },
               { 
                 name: "Yara Ibrahim", 
                 role: "Founder", 
-                desc: "Driving operational excellence and strategic growth to build the future of fintech in the Middle East.",
+                desc: "Assistant Professor of Finance and Investment with over 15 years of academic experience. Passionate about fintech, digital transformation, and sustainable finance, with research covering algorithmic trading, DeFi, and AI-driven innovation. Certified in AI applications and FinTech by ACCA. Serves as a Sustainable Development Ambassador with Egypt’s Ministry of Environment, promoting the integration of sustainability into financial systems and policy.",
                 linkedin: "https://www.linkedin.com/in/yara-ibrahim-250bb933/",
                 email: "mailto:dr.yara.magdy.90@gmail.com"
               },
@@ -159,7 +159,7 @@ export const HeroSection = () => {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-2">{founder.name}</h3>
                 <p className="text-zinc-300 text-sm font-semibold tracking-wide uppercase mb-4">{founder.role}</p>
-                <p className="text-zinc-400 text-base leading-relaxed flex-grow mb-6">{founder.desc}</p>
+                <p className="text-zinc-400 text-sm leading-relaxed flex-grow mb-6 text-left">{founder.desc}</p>
                 
                 <div className="flex items-center gap-4 mt-auto">
                   <a 

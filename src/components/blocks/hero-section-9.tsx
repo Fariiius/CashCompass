@@ -16,6 +16,7 @@ import { useLanguage } from '@/context/LanguageContext';
 import { SparklesCore } from '@/components/ui/sparkles';
 import { NavBar } from '@/components/ui/tubelight-navbar';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 
 export const HeroSection = () => {
   const { t, language } = useLanguage();
@@ -152,10 +153,13 @@ export const HeroSection = () => {
                 email: "mailto:marwan.bialy02@gmail.com",
                 image: "/marwan.jpeg"
               },
-            ].map((founder) => (
+            ].map((founder, index) => (
               <div
                 key={founder.name}
-                className="group bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10 rounded-3xl p-8 text-center hover:bg-black/10 dark:hover:bg-white/10 hover:border-neutral-600/30 dark:hover:border-neutral-400/30 transition-all duration-300 w-full max-w-sm flex flex-col items-center"
+                className={cn(
+                  "group bg-black/5 dark:bg-white/5 backdrop-blur-sm border border-black/10 dark:border-white/10 rounded-3xl p-8 text-center hover:bg-black/10 dark:hover:bg-white/10 hover:border-neutral-600/30 dark:hover:border-neutral-400/30 transition-all duration-300 w-full max-w-sm flex flex-col items-center",
+                  index === 0 ? "order-1 md:order-2" : index === 1 ? "order-2 md:order-1" : "order-3"
+                )}
               >
                 <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-neutral-200 to-neutral-400 dark:from-neutral-300 dark:to-neutral-600 flex items-center justify-center text-3xl font-bold text-black dark:text-white shadow-lg shadow-neutral-500/20 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
                   {founder.image ? (

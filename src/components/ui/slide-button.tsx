@@ -140,14 +140,14 @@ export const SlideButton = forwardRef<HTMLButtonElement, SlideButtonProps>(
       dragX.set(newX)
     }
 
-    const adjustedWidth = useTransform(springX, (x) => x + 10)
+    const adjustedWidth = useTransform(springX, (x) => x + 48)
 
     return (
       <div className="flex flex-col items-center gap-2">
         <motion.div
           animate={completed ? BUTTON_STATES.completed : BUTTON_STATES.initial}
           transition={ANIMATION_CONFIG.spring}
-          className="shadow-button-inset dark:shadow-button-inset-dark relative flex h-12 items-center justify-center rounded-full bg-zinc-800 border border-white/10"
+          className="shadow-button-inset dark:shadow-button-inset-dark relative flex h-14 items-center justify-center rounded-full bg-zinc-800 border border-white/10"
         >
           {!completed && (
             <>
@@ -174,7 +174,7 @@ export const SlideButton = forwardRef<HTMLButtonElement, SlideButtonProps>(
                 onDragEnd={handleDragEnd}
                 onDrag={handleDrag}
                 style={{ x: springX }}
-                className="absolute -left-1 z-10 flex cursor-grab items-center justify-start active:cursor-grabbing"
+                className="absolute left-1 z-10 flex cursor-grab items-center justify-start active:cursor-grabbing"
               >
                 <Button
                   ref={ref}
@@ -182,7 +182,7 @@ export const SlideButton = forwardRef<HTMLButtonElement, SlideButtonProps>(
                   {...props}
                   size="icon"
                   className={cn(
-                    "shadow-button rounded-full drop-shadow-xl h-14 w-14 bg-gradient-to-br from-neutral-200 to-neutral-400 text-black hover:scale-105",
+                    "shadow-button rounded-full drop-shadow-xl h-12 w-12 bg-gradient-to-br from-neutral-200 to-neutral-400 text-black hover:scale-105",
                     isDragging && "scale-105 transition-transform",
                     className
                   )}

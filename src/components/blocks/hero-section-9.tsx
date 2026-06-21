@@ -16,14 +16,23 @@ export const HeroSection = () => {
   return (
     <div className="bg-black text-white relative font-sans antialiased">
       {/* Global Canvas Background */}
-      <div className="fixed inset-0 z-0 w-full h-full pointer-events-none">
+      <div className="fixed inset-0 z-0 w-full h-full pointer-events-none overflow-hidden">
+        {/* Background Logo */}
+        <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] md:w-[800px] md:h-[800px] lg:w-[1000px] lg:h-[1000px] opacity-10 md:opacity-5 z-0">
+          <img 
+            src="/logo.png" 
+            alt="" 
+            className="w-full h-full object-contain"
+          />
+        </div>
+
         <SparklesCore
           id="tsparticlescolorful"
           background="transparent"
           minSize={0.6}
           maxSize={1.4}
           particleDensity={100}
-          className="w-full h-full"
+          className="w-full h-full relative z-10"
           particleColor="#00ff00"
           speed={0.5}
         />

@@ -70,12 +70,12 @@ export function NavBar({ items, className }: NavBarProps) {
         className,
       )}
     >
-      <div className="flex items-center gap-1 sm:gap-3 bg-white/10 border border-white/20 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
-        <div className="pl-2 flex items-center justify-center shrink-0">
+      <div className="flex items-center gap-0.5 sm:gap-3 bg-white/10 border border-white/20 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+        <div className="pl-1 sm:pl-2 flex items-center justify-center shrink-0">
           <img 
             src="/logo.png" 
             alt="Cash Compass" 
-            className="w-8 h-8 object-contain shrink-0" 
+            className="w-6 h-6 sm:w-8 sm:h-8 object-contain shrink-0" 
           />
         </div>
         {items.map((item) => {
@@ -88,7 +88,7 @@ export function NavBar({ items, className }: NavBarProps) {
               href={item.url}
               onClick={() => setActiveTab(item.name)}
               className={cn(
-                "relative cursor-pointer text-sm font-semibold px-3 sm:px-6 py-2 rounded-full transition-colors select-none",
+                "relative cursor-pointer text-sm font-semibold px-2 sm:px-6 py-1.5 sm:py-2 rounded-full transition-colors select-none",
                 "text-white/70 hover:text-white",
                 isActive && "bg-white/15 text-white",
               )}

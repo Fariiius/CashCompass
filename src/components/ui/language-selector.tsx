@@ -13,8 +13,8 @@ export function LanguageSelector() {
 
   const languages: { code: Language; label: string }[] = [
     { code: 'en', label: 'English' },
-    { code: 'ar-fusha', label: 'العربية الفصحى' },
-    { code: 'ar-masry', label: 'عربي مصري' },
+    { code: 'ar-fusha', label: 'اللغة العربية' },
+    { code: 'ar-masry', label: 'اللغة العربية (مصري)' },
   ]
 
   useEffect(() => {

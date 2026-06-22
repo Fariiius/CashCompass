@@ -50,28 +50,36 @@ const BASE_STOCKS = [
   { symbol: "MNHD.CA", name: "Nasr City Housing", basePrice: 4.80 },
 ];
 
+import yahooFinance from 'yahoo-finance2';
+
 export async function GET() {
   try {
-    // Generate realistic live market fluctuations
+    const symbols = BASE_STOCKS.map(s => s.symbol);
+    const quotes: any[] = await yahooFinance.quote(symbols);
+    
     const liveQuotes = BASE_STOCKS.map((stock) => {
-      // Simulate a random daily change between -5% and +5%
-      const randomChangePercent = (Math.random() * 10) - 5;
+      const quote = quotes.find(q => q.symbol === stock.symbol);
       
-      // Calculate the current simulated price
-      const currentPrice = stock.basePrice * (1 + (randomChangePercent / 100));
+      let price = stock.basePrice;
+      let changePercent = 0;
       
-      const formattedChange = randomChangePercent > 0 
-        ? `+${randomChangePercent.toFixed(2)}%` 
-        : `${randomChangePercent.toFixed(2)}%`;
+      if (quote) {
+        price = quote.regularMarketPrice ?? stock.basePrice;
+        changePercent = quote.regularMarketChangePercent ?? 0;
+      }
+      
+      const formattedChange = changePercent > 0 
+        ? `+${changePercent.toFixed(2)}%` 
+        : `${changePercent.toFixed(2)}%`;
         
       let signal = "Hold";
-      if (randomChangePercent > 1.5) signal = "Buy";
-      if (randomChangePercent < -1.5) signal = "Sell";
+      if (changePercent > 1.5) signal = "Buy";
+      if (changePercent < -1.5) signal = "Sell";
 
       return {
         symbol: stock.symbol,
         name: stock.name,
-        price: currentPrice.toFixed(2),
+        price: price.toFixed(2),
         change: formattedChange,
         signal,
       };
@@ -79,9 +87,9 @@ export async function GET() {
 
     return NextResponse.json(liveQuotes);
   } catch (error) {
-    console.error("Error generating simulated stocks:", error);
+    console.error("Error fetching stocks from Yahoo Finance:", error);
     return NextResponse.json(
-      { error: "Failed to generate stock data" },
+      { error: "Failed to fetch real stock data" },
       { status: 500 }
     );
   }

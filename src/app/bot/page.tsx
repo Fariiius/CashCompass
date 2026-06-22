@@ -18,16 +18,10 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import { useChat } from "@ai-sdk/react";
+import ReactMarkdown from "react-markdown";
 
 // --- Mock Data ---
-
-const MOCK_STOCKS = [
-  { symbol: "COMI.CA", name: "Commercial International Bank", price: "79.50", change: "+1.2%", signal: "Buy" },
-  { symbol: "HRHO.CA", name: "EFG Hermes", price: "20.15", change: "+0.5%", signal: "Hold" },
-  { symbol: "ESRS.CA", name: "Ezz Steel", price: "88.30", change: "-2.1%", signal: "Buy" },
-  { symbol: "TMGH.CA", name: "Talaat Moustafa Group", price: "64.00", change: "+3.4%", signal: "Buy" },
-  { symbol: "SWDY.CA", name: "Elsewedy Electric", price: "45.20", change: "-0.8%", signal: "Hold" },
-];
 
 const MOCK_BANKS = [
   { id: "nbe", name: "National Bank of Egypt (NBE)", url: "https://www.nbe.com.eg" },
@@ -59,13 +53,6 @@ const MOCK_METALS = [
 
 // --- Types ---
 
-type Message = {
-  id: string;
-  role: "user" | "bot";
-  content: string;
-  isStreaming?: boolean;
-};
-
 type Stock = {
   symbol: string;
   name: string;
@@ -81,20 +68,22 @@ export default function BotPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [stocks, setStocks] = useState<Stock[]>([]);
   const [isLoadingStocks, setIsLoadingStocks] = useState(true);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "welcome",
-      role: "bot",
-      content: language === "ar-fusha" || language === "ar-masry" 
-        ? "أهلاً بك في المساعد الذكي لـ Cash Compass. كيف يمكنني مساعدتك اليوم في قراراتك المالية؟"
-        : "Welcome to Cash Compass AI. How can I help you with your financial decisions today?",
-    },
-  ]);
-  const [isBotTyping, setIsBotTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const { messages, append, isLoading } = useChat({
+    api: "/api/chat",
+    initialMessages: [
+      {
+        id: "welcome",
+        role: "assistant",
+        content: language === "ar-fusha" || language === "ar-masry" 
+          ? "أهلاً بك في المساعد الذكي لـ Cash Compass. كيف يمكنني مساعدتك اليوم في قراراتك المالية؟"
+          : "Welcome to Cash Compass AI. How can I help you with your financial decisions today?",
+      }
+    ]
+  });
+
   useEffect(() => {
-    // Fetch live EGX data on load
     const fetchStocks = async () => {
       try {
         const res = await fetch("/api/stocks");
@@ -117,70 +106,17 @@ export default function BotPage() {
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages, isBotTyping]);
+  }, [messages, isLoading]);
 
   const handleSendMessage = (text: string, files?: File[]) => {
     if (!text.trim() && (!files || files.length === 0)) return;
-
-    const userMessage: Message = { id: Date.now().toString(), role: "user", content: text };
-    setMessages((prev) => [...prev, userMessage]);
-    setIsBotTyping(true);
-
-    // Simulate Streaming Bot Response
-    setTimeout(() => {
-      setIsBotTyping(false);
-      const botMessageId = (Date.now() + 1).toString();
-      
-      let fullResponse = "";
-      if (text.includes("[Simulate Analysis]")) {
-        // Extract the symbol from the prompt
-        const match = text.match(/analyze stock (.*?) \(/i);
-        const symbol = match ? match[1] : "this stock";
-        const stockData = stocks.find(s => s.symbol === symbol);
-        const price = stockData ? stockData.price : "current levels";
-        
-        fullResponse = `Based on my real-time analysis of the Egyptian Market, **${symbol}** is currently trading at **${price} EGP**.\n\n### Technical Analysis & Prediction\nThe moving averages over the last 14 days indicate a strong consolidation phase. However, given the recent macroeconomic indicators from the Central Bank of Egypt regarding interest rates, we are likely to see a breakout within the next 48 hours.\n\n**Prediction for tomorrow's close:** I expect the price to test the upper resistance level, potentially closing 1.5% to 2% higher than today's value, assuming trading volume remains above the 30-day average.\n\n### Recommended Strategy\nSince the technical signal indicates a bullish trend, my strategic recommendation is to **accumulate** on any intraday dips. Ensure you set a tight stop-loss 3% below the current support level to mitigate downside risk.`;
-      } else if (text.toLowerCase().includes("loan")) {
-        fullResponse = "Currently, the National Bank of Egypt (NBE) and Banque Misr offer some of the most competitive personal loan rates, hovering around 22-24% decreasing annually. Would you like me to calculate your potential monthly installment based on your required amount?";
-      } else {
-        fullResponse = "I can help you analyze EGX stocks, compare bank loans, or provide the latest prices for precious metals. How would you like to proceed?";
-      }
-
-      setMessages((prev) => [
-        ...prev,
-        { id: botMessageId, role: "bot", content: "", isStreaming: true },
-      ]);
-
-      // Stream the response word by word
-      const words = fullResponse.split(" ");
-      let currentWordIndex = 0;
-      
-      const streamInterval = setInterval(() => {
-        if (currentWordIndex < words.length) {
-          setMessages((prev) => 
-            prev.map(msg => 
-              msg.id === botMessageId 
-                ? { ...msg, content: msg.content + (currentWordIndex === 0 ? "" : " ") + words[currentWordIndex] }
-                : msg
-            )
-          );
-          currentWordIndex++;
-          scrollToBottom();
-        } else {
-          clearInterval(streamInterval);
-          setMessages((prev) => 
-            prev.map(msg => 
-              msg.id === botMessageId ? { ...msg, isStreaming: false } : msg
-            )
-          );
-        }
-      }, 50); // 50ms per word
-
-    }, 1000);
+    
+    // In a real scenario you can append images/attachments here
+    append({ role: "user", content: text });
   };
 
   const injectStockPrompt = (stock: Stock) => {
-    const prompt = `[Simulate Analysis] Please analyze stock ${stock.symbol} (${stock.name}). The current price is ${stock.price} EGP. Predict tomorrow's closing price, explain the reasoning behind this prediction, and outline a strategy for a '${stock.signal}' position.`;
+    const prompt = `Can you analyze the stock ${stock.symbol} (${stock.name})? The current price is ${stock.price} EGP.`;
     handleSendMessage(prompt);
   };
 
@@ -226,7 +162,7 @@ export default function BotPage() {
                 <div className="space-y-1">
                   {isLoadingStocks ? (
                     <div className="px-3 py-4 text-sm text-zinc-400 dark:text-gray-500 text-center animate-pulse">
-                      Generating live market simulation...
+                      Fetching live market data...
                     </div>
                   ) : (
                     stocks.map((stock) => (
@@ -242,7 +178,7 @@ export default function BotPage() {
                         <div className="flex justify-between items-center w-full mt-1">
                           <span className="text-xs text-zinc-500 dark:text-gray-500 truncate pr-2 font-normal">{stock.name}</span>
                           <div className="flex items-center gap-2">
-                            <span className={cn("text-xs font-medium", stock.change.startsWith("+") ? "text-green-600 dark:text-green-500" : "text-red-600 dark:text-red-500")}>
+                            <span className={cn("text-xs font-medium", stock.change.startsWith("-") ? "text-red-600 dark:text-red-500" : "text-green-600 dark:text-green-500")}>
                               {stock.change}
                             </span>
                             <span className={cn(
@@ -323,7 +259,7 @@ export default function BotPage() {
           <div className="max-w-3xl mx-auto flex flex-col gap-8 px-4">
             {messages.map((msg) => (
               <div key={msg.id} className={cn("flex w-full", msg.role === "user" ? "justify-end" : "justify-start")}>
-                {msg.role === "bot" && (
+                {msg.role === "assistant" && (
                   <div className="flex-shrink-0 mr-4 mt-1">
                     <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm border border-zinc-200 dark:border-none">
                       <img src="/logo.png" alt="Bot Avatar" className="w-full h-full object-cover" />
@@ -339,14 +275,19 @@ export default function BotPage() {
                       : "max-w-full text-zinc-800 dark:text-gray-200 py-1.5"
                   )}
                 >
-                  {msg.content}
-                  {msg.isStreaming && (
-                    <span className="inline-block w-2 h-4 ml-1 bg-zinc-800 dark:bg-white animate-pulse" />
+                  {msg.role === "assistant" ? (
+                    <div className="prose dark:prose-invert max-w-none">
+                      <ReactMarkdown>
+                        {msg.content}
+                      </ReactMarkdown>
+                    </div>
+                  ) : (
+                    msg.content
                   )}
                 </div>
               </div>
             ))}
-            {isBotTyping && (
+            {isLoading && messages[messages.length - 1]?.role === "user" && (
               <div className="flex w-full justify-start">
                 <div className="flex-shrink-0 mr-4 mt-1">
                   <div className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center bg-white shadow-sm border border-zinc-200 dark:border-none">
@@ -369,7 +310,7 @@ export default function BotPage() {
           <div className="max-w-3xl mx-auto pointer-events-auto">
             <PromptInputBox 
               onSend={handleSendMessage} 
-              isLoading={isBotTyping} 
+              isLoading={isLoading} 
               placeholder="Ask Cash Compass about stocks, loans, or financial strategies..."
             />
             <div className="text-center mt-3 text-xs text-gray-500">

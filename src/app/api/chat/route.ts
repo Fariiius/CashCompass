@@ -1,7 +1,8 @@
 import { streamText, tool } from 'ai';
 import { google } from '@ai-sdk/google';
 import { z } from 'zod';
-import yahooFinance from 'yahoo-finance2';
+import yahooFinanceModule from 'yahoo-finance2';
+const yahooFinance = new (yahooFinanceModule as any)();
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;

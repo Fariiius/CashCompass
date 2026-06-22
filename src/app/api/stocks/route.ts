@@ -50,7 +50,8 @@ const BASE_STOCKS = [
   { symbol: "MNHD.CA", name: "Nasr City Housing", basePrice: 4.80 },
 ];
 
-import yahooFinance from 'yahoo-finance2';
+import yahooFinanceModule from 'yahoo-finance2';
+const yahooFinance = new (yahooFinanceModule as any)();
 
 export async function GET() {
   try {
